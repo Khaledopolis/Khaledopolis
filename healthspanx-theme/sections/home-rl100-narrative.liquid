@@ -1,0 +1,300 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+{% if section.settings.show_section %}
+<style>
+  #home-rl100-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    font-family: 'Inter', sans-serif;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 40px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #D6DEDF;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1A2224;
+    letter-spacing: 0.01em;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger:hover {
+    background-color: rgba(61, 122, 114, 0.04);
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger .trigger-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    margin-left: 16px;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger .trigger-icon::before,
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger .trigger-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #3D7A72;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger .trigger-icon::before {
+    width: 14px;
+    height: 2px;
+    top: 9px;
+    left: 3px;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger .trigger-icon::after {
+    width: 2px;
+    height: 14px;
+    top: 3px;
+    left: 9px;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-trigger[aria-expanded="true"] .trigger-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-accordion-panel.is-open {
+    max-height: 800px;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-panel-inner {
+    background-color: #EAF3F1;
+    padding: 56px 40px;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-card {
+    background-color: {{ section.settings.card_bg }};
+    border: 1px solid #C8D4D0;
+    border-radius: 6px;
+    padding: 40px 48px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: {{ section.settings.eyebrow_color }};
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+    display: block;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px 0;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: {{ section.settings.body_color }};
+    line-height: 1.75;
+    margin: 0 0 20px 0;
+  }
+
+  #home-rl100-{{ section.id }} .rl100-supporting {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #8A9DA0;
+    line-height: 1.7;
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid #D6DEDF;
+  }
+
+  @media (max-width: 768px) {
+    #home-rl100-{{ section.id }} .rl100-accordion-trigger {
+      padding: 24px;
+    }
+
+    #home-rl100-{{ section.id }} .rl100-panel-inner {
+      padding: 40px 24px;
+    }
+
+    #home-rl100-{{ section.id }} .rl100-card {
+      padding: 32px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #home-rl100-{{ section.id }} .rl100-accordion-trigger {
+      padding: 20px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<section id="home-rl100-{{ section.id }}">
+  <button
+    class="rl100-accordion-trigger"
+    aria-expanded="false"
+    aria-controls="rl100-panel-{{ section.id }}"
+    id="rl100-trigger-{{ section.id }}"
+  >
+    <span>{{ section.settings.toggle_label }}</span>
+    <span class="trigger-icon" aria-hidden="true"></span>
+  </button>
+
+  <div
+    class="rl100-accordion-panel"
+    id="rl100-panel-{{ section.id }}"
+    role="region"
+    aria-labelledby="rl100-trigger-{{ section.id }}"
+  >
+    <div class="rl100-panel-inner">
+      <div class="rl100-card">
+        <span class="rl100-eyebrow">{{ section.settings.eyebrow_text }}</span>
+        <h2 class="rl100-heading">{{ section.settings.heading_text }}</h2>
+        <p class="rl100-body">{{ section.settings.body_text }}</p>
+        <p class="rl100-supporting">{{ section.settings.supporting_text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var trigger = document.getElementById('rl100-trigger-{{ section.id }}');
+    var panel = document.getElementById('rl100-panel-{{ section.id }}');
+    if (trigger && panel) {
+      trigger.addEventListener('click', function() {
+        var expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+        if (!expanded) {
+          panel.classList.add('is-open');
+        } else {
+          panel.classList.remove('is-open');
+        }
+      });
+    }
+  })();
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Home — RL100 Narrative",
+  "tag": "section",
+  "class": "home-rl100-narrative-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Outer Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Accordion Toggle"
+    },
+    {
+      "type": "text",
+      "id": "toggle_label",
+      "label": "Accordion Toggle Label",
+      "default": "RL100 Technology — Learn More"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "RL100"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#C4896A"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "RL100 Is a Measurement Window — Not a Program"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "RL100 exists to answer one question: When standardized biological conditions are applied over sufficient time, what observable change occurs?"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#5C6B6E"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting Text",
+      "default": "The system does not optimize, predict, or personalize mid-stream. Fewer variables. Clearer attribution."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — RL100 Narrative"
+    }
+  ]
+}
+{% endschema %}

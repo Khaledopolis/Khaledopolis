@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "graduate-decisions": {
+      "type": "graduate-decisions",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_color": "#1A2224",
+        "price_color": "#1A2224",
+        "subscription_500_price": "$175 / 4-month",
+        "subscription_1000_price": "$307 / 4-month",
+        "onetime_500_price": "$199",
+        "onetime_1000_price": "$349",
+        "show_path_eligibility": false,
+        "show_deferred": false
+      }
+    }
+  },
+  "order": [
+    "graduate-decisions"
+  ]
+}

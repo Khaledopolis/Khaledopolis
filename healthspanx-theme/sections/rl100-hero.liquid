@@ -1,0 +1,288 @@
+{% assign bg = section.settings.bg_color %}
+{% assign heading_color = section.settings.heading_color %}
+{% assign eyebrow_color = section.settings.eyebrow_color %}
+{% assign supporting_color = section.settings.supporting_color %}
+
+<section
+  class="rl100-hero"
+  style="background-color: {{ bg }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="rl100-hero"
+>
+  <div class="rl100-hero__inner">
+
+    {% if section.settings.show_timeline_decoration %}
+      <div class="rl100-hero__timeline" aria-hidden="true">
+        <div class="rl100-hero__timeline-line"></div>
+        <div class="rl100-hero__timeline-node rl100-hero__timeline-node--start"></div>
+        <div class="rl100-hero__timeline-node rl100-hero__timeline-node--mid"></div>
+        <div class="rl100-hero__timeline-node rl100-hero__timeline-node--end"></div>
+      </div>
+    {% endif %}
+
+    <div class="rl100-hero__content">
+      {% if section.settings.eyebrow_text != blank %}
+        <p
+          class="rl100-hero__eyebrow"
+          style="color: {{ eyebrow_color }};"
+        >
+          {{ section.settings.eyebrow_text }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading_text != blank %}
+        <h1
+          class="rl100-hero__heading"
+          style="color: {{ heading_color }};"
+        >
+          {{ section.settings.heading_text }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.sub_line_1 != blank %}
+        <p class="rl100-hero__sub-line rl100-hero__sub-line--1">
+          {{ section.settings.sub_line_1 }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.sub_line_2 != blank %}
+        <p class="rl100-hero__sub-line rl100-hero__sub-line--2">
+          {{ section.settings.sub_line_2 }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.supporting_text != blank %}
+        <p
+          class="rl100-hero__supporting"
+          style="color: {{ supporting_color }};"
+        >
+          {{ section.settings.supporting_text }}
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .rl100-hero {
+    padding: 96px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rl100-hero__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Timeline decoration */
+  .rl100-hero__timeline {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    height: 100%;
+    width: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  @media (max-width: 860px) {
+    .rl100-hero__timeline {
+      display: none;
+    }
+  }
+
+  .rl100-hero__timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background-color: #D6DEDF;
+  }
+
+  .rl100-hero__timeline-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #3D7A72;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .rl100-hero__timeline-node--start {
+    top: 0;
+  }
+
+  .rl100-hero__timeline-node--mid {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .rl100-hero__timeline-node--end {
+    bottom: 0;
+  }
+
+  /* Content */
+  .rl100-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .rl100-hero__eyebrow {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    line-height: 1;
+  }
+
+  .rl100-hero__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 40px;
+  }
+
+  .rl100-hero__sub-line {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1A2224;
+    margin: 0 0 8px;
+  }
+
+  .rl100-hero__sub-line--2 {
+    margin-bottom: 40px;
+  }
+
+  .rl100-hero__supporting {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .rl100-hero {
+      padding: 64px 20px 56px;
+    }
+
+    .rl100-hero__sub-line {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RL100 Hero",
+  "tag": "section",
+  "class": "section-rl100-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "RL100"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H1)",
+      "default": "RL100"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Sub Lines"
+    },
+    {
+      "type": "text",
+      "id": "sub_line_1",
+      "label": "Sub Line 1",
+      "default": "A 100-day longitudinal measurement window."
+    },
+    {
+      "type": "text",
+      "id": "sub_line_2",
+      "label": "Sub Line 2",
+      "default": "Not a program, challenge, or optimization plan."
+    },
+    {
+      "type": "header",
+      "content": "Supporting Text"
+    },
+    {
+      "type": "text",
+      "id": "supporting_text",
+      "label": "Supporting Text",
+      "default": "Stability precedes interpretation."
+    },
+    {
+      "type": "color",
+      "id": "supporting_color",
+      "label": "Supporting Text Color",
+      "default": "#5C6B6E"
+    },
+    {
+      "type": "header",
+      "content": "Timeline Decoration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timeline_decoration",
+      "label": "Show Timeline Decoration",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "RL100 Hero"
+    }
+  ]
+}
+{% endschema %}

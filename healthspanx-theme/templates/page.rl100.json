@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "rl100-hero": {
+      "type": "rl100-hero",
+      "settings": {}
+    },
+    "rl100-why": {
+      "type": "rl100-why",
+      "settings": {}
+    },
+    "rl100-how": {
+      "type": "rl100-how",
+      "settings": {}
+    },
+    "rl100-limitations": {
+      "type": "rl100-limitations",
+      "settings": {}
+    },
+    "rl100-closing": {
+      "type": "rl100-closing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "rl100-hero",
+    "rl100-why",
+    "rl100-how",
+    "rl100-limitations",
+    "rl100-closing"
+  ]
+}

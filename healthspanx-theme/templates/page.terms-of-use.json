@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "governance-page": {
+      "type": "governance-page",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_color": "#1A2224",
+        "eyebrow": "Legal",
+        "page_title": "Terms of Use",
+        "page_intro": "By accessing or using HealthspanX and the Radiant Life™ system, you agree to these terms. Please read them carefully.",
+        "show_last_updated": true,
+        "last_updated_date": ""
+      }
+    }
+  },
+  "order": [
+    "governance-page"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "governance-page": {
+      "type": "governance-page",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_color": "#1A2224",
+        "eyebrow": "Legal",
+        "page_title": "Privacy Policy",
+        "page_intro": "This policy describes how HealthspanX collects, uses, and protects your personal data in connection with the Radiant Life™ measurement system.",
+        "show_last_updated": true,
+        "last_updated_date": ""
+      }
+    }
+  },
+  "order": [
+    "governance-page"
+  ]
+}

@@ -1,0 +1,425 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign cta_bg = section.settings.cta_bg_color | default: '#3D7A72' %}
+{% assign cta_text = section.settings.cta_text_color | default: '#FFFFFF' %}
+{% assign show_research = section.settings.show_research_section %}
+
+<style>
+  .hsx-day0 {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-day0__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hsx-day0__heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-day0__intro {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 32px 0;
+  }
+
+  /* Info bullets */
+  .hsx-day0__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hsx-day0__bullets li {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5C6B6E;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .hsx-day0__bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #3D7A72;
+    font-size: 14px;
+  }
+
+  /* Divider */
+  .hsx-day0__divider {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 32px 0;
+  }
+
+  /* Checkbox row */
+  .hsx-day0__checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .hsx-day0__checkbox-row input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: #3D7A72;
+    cursor: pointer;
+  }
+
+  .hsx-day0__checkbox-row label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1A2224;
+    cursor: pointer;
+  }
+
+  /* Section card */
+  .hsx-day0__card {
+    background-color: #FFFFFF;
+    border: 1px solid #D6DEDF;
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+  }
+
+  .hsx-day0__card-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5C6B6E;
+    margin: 0 0 12px 0;
+  }
+
+  .hsx-day0__card-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-day0__card-body:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Dosage display */
+  .hsx-day0__dosage-display {
+    background-color: #EAF3F1;
+    border: 1px solid #D6DEDF;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+
+  .hsx-day0__dosage-display p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A2224;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  .hsx-day0__dosage-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #8A9DA0;
+    margin: 8px 0 0 0;
+    font-style: italic;
+  }
+
+  /* Placeholder blocks */
+  .hsx-day0__placeholder {
+    background-color: #EEF3F2;
+    border: 1px dashed #D6DEDF;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+  }
+
+  .hsx-day0__placeholder p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* CTA area */
+  .hsx-day0__cta-area {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hsx-day0__submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ cta_bg }};
+    color: {{ cta_text }};
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 14px 32px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.18s ease;
+    text-decoration: none;
+  }
+
+  .hsx-day0__submit-btn:disabled,
+  .hsx-day0__submit-btn[disabled] {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+
+  .hsx-day0__submit-btn:not(:disabled):hover {
+    opacity: 0.88;
+  }
+
+  .hsx-day0__warning {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8A9DA0;
+    margin: 0;
+    max-width: 540px;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-day0__heading {
+      font-size: 26px;
+    }
+
+    .hsx-day0__card {
+      padding: 20px 18px;
+    }
+  }
+</style>
+
+<section class="hsx-day0" id="day0-activation">
+  <div class="hsx-day0__inner">
+
+    <!-- Heading -->
+    <h1 class="hsx-day0__heading">
+      {{ section.settings.heading_text | default: 'Activate Day 0' }}
+    </h1>
+    <p class="hsx-day0__intro">
+      {{ section.settings.body_text | default: 'Your 100-day documentation window begins when this page is completed.' }}
+    </p>
+
+    <!-- Info bullets -->
+    <ul class="hsx-day0__bullets" aria-label="Protocol information">
+      <li>Dosage remains fixed. No mid-cycle modifications.</li>
+      <li>Checkpoints at Day 50 and Day 100.</li>
+      <li>Observations documented, not predicted.</li>
+      <li>This system does not diagnose or treat medical conditions.</li>
+    </ul>
+
+    <hr class="hsx-day0__divider" />
+
+    <!-- Required consent checkbox -->
+    <div class="hsx-day0__checkbox-row">
+      <input
+        type="checkbox"
+        id="hsx-required-consent"
+        name="required_consent"
+        required
+        aria-required="true"
+      />
+      <label for="hsx-required-consent">
+        I understand this is a fixed 100-day window with stable dosage and exposure conditions.
+      </label>
+    </div>
+
+    <hr class="hsx-day0__divider" />
+
+    <!-- Research section (optional) -->
+    {%- if show_research != false -%}
+    <div class="hsx-day0__card">
+      <h3 class="hsx-day0__card-heading">Research Contribution (Optional)</h3>
+      <p class="hsx-day0__card-body">
+        Optional anonymized analysis. Does not alter protocol, access, or provide financial incentives.
+      </p>
+      <div class="hsx-day0__checkbox-row">
+        <input
+          type="checkbox"
+          id="hsx-research-consent-1"
+          name="research_consent_1"
+        />
+        <label for="hsx-research-consent-1">Consent to anonymized dataset analysis.</label>
+      </div>
+      <div class="hsx-day0__checkbox-row" style="margin-top: 4px;">
+        <input
+          type="checkbox"
+          id="hsx-research-consent-2"
+          name="research_consent_2"
+        />
+        <label for="hsx-research-consent-2">Consent to de-identified visual documentation.</label>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Dosage confirmation -->
+    <div class="hsx-day0__card">
+      <h3 class="hsx-day0__card-heading">Dosage Confirmation</h3>
+      <div class="hsx-day0__dosage-display">
+        <p>Cohort: [Auto] &bull; Intake: [Auto] &bull; Capsules: [Auto]</p>
+      </div>
+      <p class="hsx-day0__dosage-note">
+        Standardized for life-stage cohort. Cannot be modified.
+      </p>
+    </div>
+
+    <!-- Data capture -->
+    <div class="hsx-day0__card">
+      <h3 class="hsx-day0__card-heading">Data Capture</h3>
+      <p class="hsx-day0__card-body">
+        Baseline questionnaire, photo capture, and stability declaration are presented below.
+      </p>
+
+      <!-- Placeholder: baseline questionnaire -->
+      <div class="hsx-day0__placeholder">
+        <p>Developer placeholder — Baseline questionnaire component.</p>
+      </div>
+
+      <!-- Placeholder: photo capture -->
+      <div class="hsx-day0__placeholder">
+        <p>Developer placeholder — Photo capture interface.</p>
+      </div>
+
+      <!-- Placeholder: stability declaration -->
+      <div class="hsx-day0__placeholder">
+        <p>Developer placeholder — Stability declaration with 3 confirmation checkboxes.</p>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="hsx-day0__cta-area">
+      <button
+        class="hsx-day0__submit-btn"
+        id="hsx-day0-submit"
+        type="button"
+        disabled
+        aria-disabled="true"
+      >
+        {{ section.settings.cta_text | default: 'Activate Day 0' }}
+      </button>
+      <p class="hsx-day0__warning">
+        100-day clock begins. Baseline fixed. Dosage locked. Next checkpoint: Day 50. Cannot be undone.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var requiredCheckbox = document.getElementById('hsx-required-consent');
+    var submitBtn = document.getElementById('hsx-day0-submit');
+
+    if (!requiredCheckbox || !submitBtn) return;
+
+    function updateSubmitState() {
+      if (requiredCheckbox.checked) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-disabled');
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-disabled', 'true');
+      }
+    }
+
+    requiredCheckbox.addEventListener('change', updateSubmitState);
+    updateSubmitState();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Day 0 Activation",
+  "tag": "div",
+  "class": "hsx-day0-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "Activate Day 0"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "Your 100-day documentation window begins when this page is completed."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Activate Day 0"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA background color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_research_section",
+      "label": "Show research contribution section",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Day 0 Activation"
+    }
+  ]
+}
+{% endschema %}

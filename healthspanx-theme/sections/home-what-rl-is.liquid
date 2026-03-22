@@ -1,0 +1,176 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+{% if section.settings.show_section %}
+<style>
+  #home-what-rl-is-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 96px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #home-what-rl-is-{{ section.id }} .what-rl-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  #home-what-rl-is-{{ section.id }} h2 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(26px, 3.2vw, 38px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 40px 0;
+  }
+
+  #home-what-rl-is-{{ section.id }} .what-rl-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #home-what-rl-is-{{ section.id }} .what-rl-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.6;
+  }
+
+  #home-what-rl-is-{{ section.id }} .what-rl-bullets li::before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: {{ section.settings.bullet_color }};
+    margin-top: 8px;
+  }
+
+  #home-what-rl-is-{{ section.id }} .what-rl-key-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: {{ section.settings.key_line_color }};
+    line-height: 1.5;
+    margin: 0;
+    padding-top: 32px;
+    border-top: 1px solid #D6DEDF;
+  }
+
+  @media (max-width: 768px) {
+    #home-what-rl-is-{{ section.id }} {
+      padding: 72px 24px;
+    }
+
+    #home-what-rl-is-{{ section.id }} .what-rl-bullets li {
+      font-size: 16px;
+    }
+
+    #home-what-rl-is-{{ section.id }} .what-rl-key-line {
+      font-size: 17px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #home-what-rl-is-{{ section.id }} {
+      padding: 56px 20px;
+    }
+  }
+</style>
+
+<section id="home-what-rl-is-{{ section.id }}">
+  <div class="what-rl-inner">
+    <h2>{{ section.settings.heading_text }}</h2>
+    <ul class="what-rl-bullets">
+      <li>Identify biological constraints</li>
+      <li>Apply standardized conditions</li>
+      <li>Track response over time</li>
+      <li>Preserve interpretability and trust</li>
+    </ul>
+    <p class="what-rl-key-line">{{ section.settings.key_line_text }}</p>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Home — What RL Is",
+  "tag": "section",
+  "class": "home-what-rl-is-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Radiant Life™ is not a supplement brand."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Bullets"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Dot Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "header",
+      "content": "Key Line"
+    },
+    {
+      "type": "text",
+      "id": "key_line_text",
+      "label": "Key Line Text (bold)",
+      "default": "Products are biological tools — not consumer choices."
+    },
+    {
+      "type": "color",
+      "id": "key_line_color",
+      "label": "Key Line Text Color",
+      "default": "#1A2224"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — What RL Is"
+    }
+  ]
+}
+{% endschema %}

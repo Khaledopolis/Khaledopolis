@@ -1,0 +1,271 @@
+<section
+  class="rl100-limitations"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="rl100-limitations"
+>
+  <div class="rl100-limitations__inner">
+
+    <div class="rl100-limitations__accordion" data-accordion>
+
+      <button
+        class="rl100-limitations__toggle"
+        aria-expanded="false"
+        aria-controls="rl100-limitations-panel-{{ section.id }}"
+        data-accordion-toggle
+      >
+        <span class="rl100-limitations__toggle-label">
+          {{ section.settings.toggle_label }}
+        </span>
+        <span class="rl100-limitations__toggle-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="rl100-limitations__icon-path" d="M2 5L8 11L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+
+      <div
+        class="rl100-limitations__panel"
+        id="rl100-limitations-panel-{{ section.id }}"
+        role="region"
+        aria-hidden="true"
+        data-accordion-panel
+      >
+        <div class="rl100-limitations__panel-inner">
+
+          {% if section.settings.section_a_title != blank %}
+            <div class="rl100-limitations__section">
+              <h3 class="rl100-limitations__section-title">
+                {{ section.settings.section_a_title }}
+              </h3>
+              {% if section.settings.section_a_body != blank %}
+                <p class="rl100-limitations__section-body">
+                  {{ section.settings.section_a_body }}
+                </p>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="rl100-limitations__section-divider" aria-hidden="true"></div>
+
+          {% if section.settings.section_b_title != blank %}
+            <div class="rl100-limitations__section">
+              <h3 class="rl100-limitations__section-title">
+                {{ section.settings.section_b_title }}
+              </h3>
+              {% if section.settings.section_b_body != blank %}
+                <p class="rl100-limitations__section-body">
+                  {{ section.settings.section_b_body }}
+                </p>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .rl100-limitations {
+    padding: 0 24px;
+    border-top: 1px solid #D6DEDF;
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .rl100-limitations__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .rl100-limitations__accordion {
+    width: 100%;
+  }
+
+  .rl100-limitations__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 28px 0;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    color: #1A2224;
+  }
+
+  .rl100-limitations__toggle:focus-visible {
+    outline: 2px solid #3D7A72;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .rl100-limitations__toggle-label {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+    color: inherit;
+  }
+
+  .rl100-limitations__toggle-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: #5C6B6E;
+    transition: transform 0.25s ease;
+  }
+
+  .rl100-limitations__toggle[aria-expanded="true"] .rl100-limitations__toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Panel hidden state */
+  .rl100-limitations__panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+
+  .rl100-limitations__panel[aria-hidden="false"] {
+    max-height: 800px;
+  }
+
+  .rl100-limitations__panel-inner {
+    padding-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .rl100-limitations__section {
+    padding: 24px 0;
+  }
+
+  .rl100-limitations__section-title {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3D7A72;
+    margin: 0 0 12px;
+    line-height: 1;
+  }
+
+  .rl100-limitations__section-body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #1A2224;
+    margin: 0;
+  }
+
+  .rl100-limitations__section-divider {
+    height: 1px;
+    background-color: #D6DEDF;
+  }
+
+  @media (max-width: 600px) {
+    .rl100-limitations {
+      padding: 0 20px;
+    }
+
+    .rl100-limitations__toggle {
+      padding: 24px 0;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var accordion = document.querySelector('[data-section-id="{{ section.id }}"] [data-accordion]');
+    if (!accordion) return;
+
+    var toggle = accordion.querySelector('[data-accordion-toggle]');
+    var panel = accordion.querySelector('[data-accordion-panel]');
+
+    if (!toggle || !panel) return;
+
+    toggle.addEventListener('click', function () {
+      var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+      panel.setAttribute('aria-hidden', String(isExpanded));
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "RL100 Limitations",
+  "tag": "section",
+  "class": "section-rl100-limitations",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Accordion Toggle"
+    },
+    {
+      "type": "text",
+      "id": "toggle_label",
+      "label": "Toggle Label",
+      "default": "Limitations & Participation Requirements"
+    },
+    {
+      "type": "header",
+      "content": "Section A — What RL100 Does Not Do"
+    },
+    {
+      "type": "text",
+      "id": "section_a_title",
+      "label": "Section A Title",
+      "default": "What RL100 Does Not Do"
+    },
+    {
+      "type": "textarea",
+      "id": "section_a_body",
+      "label": "Section A Body",
+      "default": "Does not predict outcomes, personalize mid-protocol, guarantee change, or replace medical evaluation."
+    },
+    {
+      "type": "header",
+      "content": "Section B — What Participation Requires"
+    },
+    {
+      "type": "text",
+      "id": "section_b_title",
+      "label": "Section B Title",
+      "default": "What Participation Requires"
+    },
+    {
+      "type": "textarea",
+      "id": "section_b_body",
+      "label": "Section B Body",
+      "default": "Consistency. Patience. Respect for standardized conditions. Designed for those willing to observe change — not chase it."
+    }
+  ],
+  "presets": [
+    {
+      "name": "RL100 Limitations"
+    }
+  ]
+}
+{% endschema %}

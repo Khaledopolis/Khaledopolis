@@ -1,0 +1,398 @@
+<section
+  class="enroll-includes"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="enroll-includes"
+>
+  <div class="enroll-includes__inner">
+
+    {% if section.settings.heading_text != blank %}
+      <h2
+        class="enroll-includes__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h2>
+    {% endif %}
+
+    <ul class="enroll-includes__bullets" role="list">
+      {% if section.settings.bullet_1 != blank %}
+        <li class="enroll-includes__bullet">
+          <span
+            class="enroll-includes__bullet-dot"
+            style="background-color: {{ section.settings.bullet_color }};"
+            aria-hidden="true"
+          ></span>
+          <span class="enroll-includes__bullet-text">{{ section.settings.bullet_1 }}</span>
+        </li>
+      {% endif %}
+      {% if section.settings.bullet_2 != blank %}
+        <li class="enroll-includes__bullet">
+          <span
+            class="enroll-includes__bullet-dot"
+            style="background-color: {{ section.settings.bullet_color }};"
+            aria-hidden="true"
+          ></span>
+          <span class="enroll-includes__bullet-text">{{ section.settings.bullet_2 }}</span>
+        </li>
+      {% endif %}
+      {% if section.settings.bullet_3 != blank %}
+        <li class="enroll-includes__bullet">
+          <span
+            class="enroll-includes__bullet-dot"
+            style="background-color: {{ section.settings.bullet_color }};"
+            aria-hidden="true"
+          ></span>
+          <span class="enroll-includes__bullet-text">{{ section.settings.bullet_3 }}</span>
+        </li>
+      {% endif %}
+      {% if section.settings.bullet_4 != blank %}
+        <li class="enroll-includes__bullet">
+          <span
+            class="enroll-includes__bullet-dot"
+            style="background-color: {{ section.settings.bullet_color }};"
+            aria-hidden="true"
+          ></span>
+          <span class="enroll-includes__bullet-text">{{ section.settings.bullet_4 }}</span>
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="enroll-includes__accordions">
+
+      <!-- Accordion A -->
+      <div
+        class="enroll-includes__accordion"
+        data-accordion
+        data-accordion-id="{{ section.id }}-a"
+      >
+        <button
+          class="enroll-includes__toggle"
+          aria-expanded="false"
+          aria-controls="enroll-includes-panel-{{ section.id }}-a"
+          data-accordion-toggle
+        >
+          <span class="enroll-includes__toggle-label">
+            {{ section.settings.accordion_a_title }}
+          </span>
+          <span class="enroll-includes__toggle-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 5L8 11L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div
+          class="enroll-includes__panel"
+          id="enroll-includes-panel-{{ section.id }}-a"
+          role="region"
+          aria-hidden="true"
+          data-accordion-panel
+        >
+          <div class="enroll-includes__panel-inner">
+            <p class="enroll-includes__panel-body">{{ section.settings.accordion_a_body }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion B -->
+      <div
+        class="enroll-includes__accordion"
+        data-accordion
+        data-accordion-id="{{ section.id }}-b"
+      >
+        <button
+          class="enroll-includes__toggle"
+          aria-expanded="false"
+          aria-controls="enroll-includes-panel-{{ section.id }}-b"
+          data-accordion-toggle
+        >
+          <span class="enroll-includes__toggle-label">
+            {{ section.settings.accordion_b_title }}
+          </span>
+          <span class="enroll-includes__toggle-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 5L8 11L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div
+          class="enroll-includes__panel"
+          id="enroll-includes-panel-{{ section.id }}-b"
+          role="region"
+          aria-hidden="true"
+          data-accordion-panel
+        >
+          <div class="enroll-includes__panel-inner">
+            <p class="enroll-includes__panel-body">{{ section.settings.accordion_b_body }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .enroll-includes {
+    padding: 80px 24px;
+  }
+
+  .enroll-includes__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .enroll-includes__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 40px;
+  }
+
+  .enroll-includes__bullets {
+    list-style: none;
+    margin: 0 0 48px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .enroll-includes__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .enroll-includes__bullet-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .enroll-includes__bullet-text {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1A2224;
+  }
+
+  /* Accordions */
+  .enroll-includes__accordions {
+    border-top: 1px solid #D6DEDF;
+  }
+
+  .enroll-includes__accordion {
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .enroll-includes__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    color: #1A2224;
+  }
+
+  .enroll-includes__toggle:focus-visible {
+    outline: 2px solid #3D7A72;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .enroll-includes__toggle-label {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+    color: inherit;
+  }
+
+  .enroll-includes__toggle-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: #5C6B6E;
+    transition: transform 0.25s ease;
+  }
+
+  .enroll-includes__toggle[aria-expanded="true"] .enroll-includes__toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .enroll-includes__panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+
+  .enroll-includes__panel[aria-hidden="false"] {
+    max-height: 600px;
+  }
+
+  .enroll-includes__panel-inner {
+    padding-bottom: 28px;
+  }
+
+  .enroll-includes__panel-body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #1A2224;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .enroll-includes {
+      padding: 56px 20px;
+    }
+
+    .enroll-includes__bullet-text {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var sectionEl = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!sectionEl) return;
+
+    var accordions = sectionEl.querySelectorAll('[data-accordion]');
+
+    accordions.forEach(function (accordion) {
+      var toggle = accordion.querySelector('[data-accordion-toggle]');
+      var panel = accordion.querySelector('[data-accordion-panel]');
+
+      if (!toggle || !panel) return;
+
+      toggle.addEventListener('click', function () {
+        var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isExpanded));
+        panel.setAttribute('aria-hidden', String(isExpanded));
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Enroll Includes",
+  "tag": "section",
+  "class": "section-enroll-includes",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H2)",
+      "default": "What Participation Includes"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Bullets"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Dot Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "text",
+      "id": "bullet_1",
+      "label": "Bullet 1",
+      "default": "100-Day Tracking Framework access"
+    },
+    {
+      "type": "text",
+      "id": "bullet_2",
+      "label": "Bullet 2",
+      "default": "Baseline, Day 50, Day 100 measurement checkpoints"
+    },
+    {
+      "type": "text",
+      "id": "bullet_3",
+      "label": "Bullet 3",
+      "default": "Standardized protocol guidance"
+    },
+    {
+      "type": "text",
+      "id": "bullet_4",
+      "label": "Bullet 4",
+      "default": "Structured outcome documentation"
+    },
+    {
+      "type": "header",
+      "content": "Accordion A"
+    },
+    {
+      "type": "text",
+      "id": "accordion_a_title",
+      "label": "Accordion A Title",
+      "default": "Who RL100 Is Designed For"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_a_body",
+      "label": "Accordion A Body",
+      "default": "Individuals willing to follow standardized conditions, accept biological timelines, prefer observation over rapid optimization, and understand outcomes are documented, not guaranteed."
+    },
+    {
+      "type": "header",
+      "content": "Accordion B"
+    },
+    {
+      "type": "text",
+      "id": "accordion_b_title",
+      "label": "Accordion B Title",
+      "default": "What Participation Requires"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_b_body",
+      "label": "Accordion B Body",
+      "default": "Daily adherence. Defined checkpoints. No mid-protocol changes. Stability is essential."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enroll Includes"
+    }
+  ]
+}
+{% endschema %}

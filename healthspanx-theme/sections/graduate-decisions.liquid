@@ -1,0 +1,315 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign price_col = section.settings.price_color | default: '#1A2224' %}
+
+{% assign sub_500 = section.settings.subscription_500_price | default: '$175 / 4-month' %}
+{% assign sub_1000 = section.settings.subscription_1000_price | default: '$307 / 4-month' %}
+{% assign ot_500 = section.settings.onetime_500_price | default: '$199' %}
+{% assign ot_1000 = section.settings.onetime_1000_price | default: '$349' %}
+
+{% assign show_path = section.settings.show_path_eligibility %}
+{% assign show_deferred = section.settings.show_deferred %}
+
+<style>
+  .hsx-grad {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-grad__inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Section A heading */
+  .hsx-grad__protocol-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 10px 0;
+  }
+
+  .hsx-grad__protocol-sub {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    color: #5C6B6E;
+    margin: 0 0 28px 0;
+  }
+
+  /* Table: Foundation Continuity */
+  .hsx-grad__table-wrap {
+    overflow-x: auto;
+    margin-bottom: 36px;
+  }
+
+  .hsx-grad__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 400px;
+  }
+
+  .hsx-grad__table thead tr {
+    border-bottom: 2px solid #D6DEDF;
+  }
+
+  .hsx-grad__table th {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A9DA0;
+    text-align: left;
+    padding: 10px 16px 10px 0;
+  }
+
+  .hsx-grad__table th:first-child {
+    min-width: 180px;
+  }
+
+  .hsx-grad__table tbody tr {
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .hsx-grad__table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .hsx-grad__table td {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    padding: 16px 16px 16px 0;
+    vertical-align: top;
+  }
+
+  .hsx-grad__table td.row-label {
+    color: #1A2224;
+    font-weight: 500;
+  }
+
+  .hsx-grad__table td.price-cell {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: {{ price_col }};
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .hsx-grad__table .price-adj-note {
+    display: block;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #8A9DA0;
+    margin-top: 3px;
+  }
+
+  /* Divider */
+  .hsx-grad__divider {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 40px 0;
+  }
+
+  /* Section sub-headings */
+  .hsx-grad__sub-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ heading_col }};
+    margin: 0 0 8px 0;
+  }
+
+  .hsx-grad__section-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 20px 0;
+  }
+
+  /* Placeholder */
+  .hsx-grad__placeholder {
+    background-color: #EEF3F2;
+    border: 1px dashed #D6DEDF;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0 0 0;
+  }
+
+  .hsx-grad__placeholder p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Governance note */
+  .hsx-grad__governance-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0 0 16px 0;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-grad__protocol-heading {
+      font-size: 24px;
+    }
+
+    .hsx-grad__table th,
+    .hsx-grad__table td {
+      padding-right: 10px;
+    }
+  }
+</style>
+
+<section class="hsx-grad" id="graduate-decisions">
+  <div class="hsx-grad__inner">
+
+    <!-- Section A: Foundation Continuity -->
+    <h2 class="hsx-grad__protocol-heading">Protocol Complete.</h2>
+    <p class="hsx-grad__protocol-sub">Two maintenance options:</p>
+
+    <div class="hsx-grad__table-wrap">
+      <table class="hsx-grad__table" aria-label="Foundation continuity pricing">
+        <thead>
+          <tr>
+            <th scope="col">Option</th>
+            <th scope="col">500mg</th>
+            <th scope="col">1,000mg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">
+              Subscription
+              <span style="display:block; font-size:12px; color:#8A9DA0; font-weight:400; margin-top:2px;">12% adjustment</span>
+            </td>
+            <td class="price-cell">{{ sub_500 }}</td>
+            <td class="price-cell">{{ sub_1000 }}</td>
+          </tr>
+          <tr>
+            <td class="row-label">One-time</td>
+            <td class="price-cell">{{ ot_500 }}</td>
+            <td class="price-cell">{{ ot_1000 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="hsx-grad__divider" />
+
+    <!-- Section B: Foundation Adjacent -->
+    <h3 class="hsx-grad__sub-heading">Optional Structural Support</h3>
+    <p class="hsx-grad__section-note">
+      Grouped by biological domain. No urgency, no bundles.
+    </p>
+    <div class="hsx-grad__placeholder">
+      <p>Developer placeholder — Product grid grouped by biological domain (all graduates).</p>
+    </div>
+
+    <hr class="hsx-grad__divider" />
+
+    <!-- Section C: Path Eligibility (conditional) -->
+    {%- if show_path -%}
+    <h3 class="hsx-grad__sub-heading">Path Eligibility</h3>
+    <p class="hsx-grad__section-note">
+      Rendered only when Path products exist and lowest pillar score is below threshold.
+    </p>
+    <div class="hsx-grad__placeholder">
+      <p>Developer placeholder — Conditional Path eligibility content (lowest pillar &lt; 50).</p>
+    </div>
+
+    <hr class="hsx-grad__divider" />
+    {%- endif -%}
+
+    <!-- Section D: Deferred Intervention -->
+    {%- if show_deferred -%}
+    <h3 class="hsx-grad__sub-heading">Deferred Intervention</h3>
+    <p class="hsx-grad__governance-note">Governance-reviewed. Rarely rendered.</p>
+    <div class="hsx-grad__placeholder">
+      <p>Developer placeholder — Deferred intervention content (governance-gated).</p>
+    </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Graduate Decisions",
+  "tag": "div",
+  "class": "hsx-grad-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "text",
+      "id": "subscription_500_price",
+      "label": "Subscription 500mg price",
+      "default": "$175 / 4-month"
+    },
+    {
+      "type": "text",
+      "id": "subscription_1000_price",
+      "label": "Subscription 1,000mg price",
+      "default": "$307 / 4-month"
+    },
+    {
+      "type": "text",
+      "id": "onetime_500_price",
+      "label": "One-time 500mg price",
+      "default": "$199"
+    },
+    {
+      "type": "text",
+      "id": "onetime_1000_price",
+      "label": "One-time 1,000mg price",
+      "default": "$349"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_path_eligibility",
+      "label": "Show Path Eligibility section",
+      "default": false,
+      "info": "Only render when Path products exist AND lowest pillar score < 50."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_deferred",
+      "label": "Show Deferred Intervention section",
+      "default": false,
+      "info": "Governance-reviewed. Rarely rendered."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Graduate Decisions"
+    }
+  ]
+}
+{% endschema %}

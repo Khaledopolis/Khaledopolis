@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "day0-activation": {
+      "type": "day0-activation",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_text": "Activate Day 0",
+        "heading_color": "#1A2224",
+        "body_text": "Your 100-day documentation window begins when this page is completed.",
+        "cta_text": "Activate Day 0",
+        "cta_bg_color": "#3D7A72",
+        "cta_text_color": "#FFFFFF",
+        "show_research_section": true
+      }
+    }
+  },
+  "order": [
+    "day0-activation"
+  ]
+}

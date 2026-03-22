@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "tracker-dashboard": {
+      "type": "tracker-dashboard",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "card_bg": "#FFFFFF",
+        "card_border_color": "#D6DEDF",
+        "heading_color": "#1A2224",
+        "status_color": "#3D7A72",
+        "show_daily_checkin": true
+      }
+    }
+  },
+  "order": [
+    "tracker-dashboard"
+  ]
+}

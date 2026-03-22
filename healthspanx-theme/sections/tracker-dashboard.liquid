@@ -1,0 +1,327 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign card_bg = section.settings.card_bg | default: '#FFFFFF' %}
+{% assign card_border = section.settings.card_border_color | default: '#D6DEDF' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign status_col = section.settings.status_color | default: '#3D7A72' %}
+{% assign show_checkin = section.settings.show_daily_checkin %}
+
+<style>
+  .hsx-tracker {
+    background-color: {{ bg }};
+    padding: 48px 24px 72px;
+  }
+
+  .hsx-tracker__inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Card base */
+  .hsx-tracker__card {
+    background-color: {{ card_bg }};
+    border: 1px solid {{ card_border }};
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+  }
+
+  .hsx-tracker__card-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.01em;
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-tracker__card-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #8A9DA0;
+    margin: 0 0 8px 0;
+    display: block;
+  }
+
+  /* Stats line */
+  .hsx-tracker__stats {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #5C6B6E;
+    margin: 0 0 12px 0;
+  }
+
+  .hsx-tracker__stats span.status-active {
+    color: {{ status_col }};
+    font-weight: 500;
+  }
+
+  /* Research status row */
+  .hsx-tracker__research-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .hsx-tracker__research-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #5C6B6E;
+  }
+
+  .hsx-tracker__research-link {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: {{ status_col }};
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* Guidance card */
+  .hsx-tracker__guidance-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ heading_col }};
+    margin: 0 0 10px 0;
+  }
+
+  .hsx-tracker__guidance-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5C6B6E;
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-tracker__guidance-body:last-child {
+    margin-bottom: 0;
+  }
+
+  .hsx-tracker__divider {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 18px 0;
+  }
+
+  /* Photo notice */
+  .hsx-tracker__photo-notice {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Countdown */
+  .hsx-tracker__countdown-card {
+    background-color: {{ card_bg }};
+    border: 1px solid {{ card_border }};
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hsx-tracker__countdown-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    margin: 0;
+  }
+
+  .hsx-tracker__countdown-value {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* Daily check-in */
+  .hsx-tracker__checkin-card {
+    background-color: {{ card_bg }};
+    border: 1px solid {{ card_border }};
+    border-radius: 6px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hsx-tracker__checkin-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: {{ status_col }};
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .hsx-tracker__checkin-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #1A2224;
+    cursor: pointer;
+  }
+
+  .hsx-tracker__checkin-note {
+    width: 100%;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #8A9DA0;
+    margin: 4px 0 0 30px;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-tracker__card {
+      padding: 20px 18px;
+    }
+
+    .hsx-tracker__countdown-card {
+      padding: 18px 20px;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hsx-tracker__countdown-value {
+      font-size: 36px;
+    }
+
+    .hsx-tracker__checkin-card {
+      padding: 18px 18px;
+    }
+  }
+</style>
+
+<section class="hsx-tracker" id="tracker-dashboard">
+  <div class="hsx-tracker__inner">
+
+    <!-- Status card: Day 0 locked -->
+    <div class="hsx-tracker__card">
+      <h2 class="hsx-tracker__card-heading">Day 0 Is Locked</h2>
+      <p class="hsx-tracker__stats">
+        Window: <span class="status-active">Active</span>
+        &nbsp;&bull;&nbsp;
+        Start: [timestamp]
+        &nbsp;&bull;&nbsp;
+        Current: Day [auto]
+        &nbsp;&bull;&nbsp;
+        Next: Day 50
+        &nbsp;&bull;&nbsp;
+        Intake: [auto]
+      </p>
+      <div class="hsx-tracker__research-row">
+        <span class="hsx-tracker__research-label">Research Status: Included / Not included</span>
+        <button class="hsx-tracker__research-link" type="button" aria-label="Manage research consent">
+          [Manage Consent]
+        </button>
+      </div>
+    </div>
+
+    <!-- Guidance card -->
+    <div class="hsx-tracker__card">
+      <h3 class="hsx-tracker__guidance-heading">Days 1–49</h3>
+      <p class="hsx-tracker__guidance-body">
+        This period is not designed for visible evaluation. It allows stable exposure, cellular adaptation, and baseline comparison integrity. You may or may not notice changes — this is normal. Short-term fluctuations are not interpreted. Meaning is reserved for Day 50.
+      </p>
+      <hr class="hsx-tracker__divider" />
+      <p class="hsx-tracker__guidance-body">
+        Maintain stability: do not adjust dosage, avoid new supplements, avoid cosmetic procedures. Report changes at your next checkpoint.
+      </p>
+      <hr class="hsx-tracker__divider" />
+      <p class="hsx-tracker__photo-notice">
+        Day 0 photo securely stored. Used at Day 50 and Day 100. No action required.
+      </p>
+    </div>
+
+    <!-- Countdown card -->
+    <div class="hsx-tracker__countdown-card">
+      <p class="hsx-tracker__countdown-label">Day 50 Checkpoint Available In:</p>
+      <p class="hsx-tracker__countdown-value">[XX Days]</p>
+    </div>
+
+    <!-- Daily check-in (optional) -->
+    {%- if show_checkin != false -%}
+    <div class="hsx-tracker__checkin-card">
+      <input
+        type="checkbox"
+        class="hsx-tracker__checkin-checkbox"
+        id="hsx-daily-checkin"
+        name="daily_checkin"
+        aria-label="Mark today's intake as completed"
+      />
+      <label for="hsx-daily-checkin" class="hsx-tracker__checkin-label">
+        Intake completed today.
+      </label>
+      <span class="hsx-tracker__checkin-note">No streaks, scores, or badges.</span>
+    </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tracker Dashboard",
+  "tag": "div",
+  "class": "hsx-tracker-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#D6DEDF"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "status_color",
+      "label": "Status / accent color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_daily_checkin",
+      "label": "Show daily intake check-in",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tracker Dashboard"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,333 @@
+{% comment %}
+  enroll-logistics.liquid
+  Age-routing note: In live context, the participant's age cohort would be passed
+  via a customer metafield or URL parameter. For theme editor preview, both rows
+  are shown. In production, apply age routing at the system/app level or via
+  customer tag (e.g. customer.tags contains "cohort-25-34").
+  Participant sees only their age-cohort row. Age-routing applied at system level.
+{% endcomment %}
+
+{% comment %} Detect age cohort — adapt this logic to your data source {% endcomment %}
+{% assign customer_cohort = '' %}
+{% if customer %}
+  {% for tag in customer.tags %}
+    {% if tag == 'cohort-25-34' %}
+      {% assign customer_cohort = '25-34' %}
+    {% endif %}
+    {% if tag == 'cohort-35-plus' %}
+      {% assign customer_cohort = '35+' %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<section
+  class="enroll-logistics"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="enroll-logistics"
+>
+  <div class="enroll-logistics__inner">
+
+    {% if section.settings.heading_text != blank %}
+      <h2
+        class="enroll-logistics__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h2>
+    {% endif %}
+
+    <div class="enroll-logistics__table-wrap">
+      <table class="enroll-logistics__table" role="table" aria-label="RL100 Cohort Pricing">
+        <thead>
+          <tr>
+            <th class="enroll-logistics__th" scope="col">Cohort</th>
+            <th class="enroll-logistics__th" scope="col">Protocol</th>
+            <th class="enroll-logistics__th enroll-logistics__th--price" scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% comment %} Row 1: Age 25–34 {% endcomment %}
+          {% if customer_cohort == '' or customer_cohort == '25-34' %}
+            <tr
+              class="enroll-logistics__row{% if customer_cohort == '25-34' %} enroll-logistics__row--active{% endif %}"
+              {% if customer_cohort == '25-34' %}aria-current="true"{% endif %}
+            >
+              <td class="enroll-logistics__td">{{ section.settings.row1_cohort }}</td>
+              <td class="enroll-logistics__td">{{ section.settings.row1_protocol }}</td>
+              <td
+                class="enroll-logistics__td enroll-logistics__td--price"
+                style="color: {{ section.settings.price_color }};"
+              >
+                {{ section.settings.row1_price }}
+              </td>
+            </tr>
+          {% endif %}
+
+          {% comment %} Row 2: Age 35+ {% endcomment %}
+          {% if customer_cohort == '' or customer_cohort == '35+' %}
+            <tr
+              class="enroll-logistics__row{% if customer_cohort == '35+' %} enroll-logistics__row--active{% endif %}"
+              {% if customer_cohort == '35+' %}aria-current="true"{% endif %}
+            >
+              <td class="enroll-logistics__td">{{ section.settings.row2_cohort }}</td>
+              <td class="enroll-logistics__td">{{ section.settings.row2_protocol }}</td>
+              <td
+                class="enroll-logistics__td enroll-logistics__td--price"
+                style="color: {{ section.settings.price_color }};"
+              >
+                {{ section.settings.row2_price }}
+              </td>
+            </tr>
+          {% endif %}
+
+        </tbody>
+      </table>
+    </div>
+
+    {% comment %} Theme editor notice — only visible in editor context {% endcomment %}
+    {% if request.design_mode %}
+      <p class="enroll-logistics__editor-note" aria-hidden="true">
+        Theme editor: both cohort rows shown for preview. Participant sees only their age-cohort price. Age-routing applied at system level.
+      </p>
+    {% endif %}
+
+    {% if section.settings.note_text != blank %}
+      <p
+        class="enroll-logistics__note"
+        style="color: {{ section.settings.note_color }};"
+      >
+        {{ section.settings.note_text }}
+      </p>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .enroll-logistics {
+    padding: 80px 24px;
+  }
+
+  .enroll-logistics__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .enroll-logistics__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 40px;
+  }
+
+  .enroll-logistics__table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #D6DEDF;
+    border-radius: 4px;
+  }
+
+  .enroll-logistics__table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+  .enroll-logistics__th {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5C6B6E;
+    text-align: left;
+    padding: 14px 20px;
+    border-bottom: 1px solid #D6DEDF;
+    white-space: nowrap;
+  }
+
+  .enroll-logistics__th--price {
+    text-align: right;
+  }
+
+  .enroll-logistics__row {
+    transition: background-color 0.15s ease;
+  }
+
+  .enroll-logistics__row:not(:last-child) {
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .enroll-logistics__row--active {
+    background-color: #EAF3F1;
+  }
+
+  .enroll-logistics__td {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #1A2224;
+    padding: 18px 20px;
+    vertical-align: middle;
+  }
+
+  .enroll-logistics__td--price {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .enroll-logistics__editor-note {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: #8A9DA0;
+    margin: 12px 0 0;
+    line-height: 1.5;
+    padding: 10px 14px;
+    background-color: #EEF3F2;
+    border-left: 3px solid #3D7A72;
+    border-radius: 2px;
+  }
+
+  .enroll-logistics__note {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.65;
+    margin: 28px 0 0;
+  }
+
+  @media (max-width: 600px) {
+    .enroll-logistics {
+      padding: 56px 20px;
+    }
+
+    .enroll-logistics__td {
+      padding: 14px 16px;
+    }
+
+    .enroll-logistics__th {
+      padding: 12px 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Enroll Logistics",
+  "tag": "section",
+  "class": "section-enroll-logistics",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H2)",
+      "default": "RL100: 100-day window with 4-month standardized supply."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Price Color"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Text Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Row 1 — Age 25\u201334"
+    },
+    {
+      "type": "text",
+      "id": "row1_cohort",
+      "label": "Row 1: Cohort",
+      "default": "Age 25\u201334"
+    },
+    {
+      "type": "text",
+      "id": "row1_protocol",
+      "label": "Row 1: Protocol",
+      "default": "500mg"
+    },
+    {
+      "type": "text",
+      "id": "row1_price",
+      "label": "Row 1: Price",
+      "default": "$199"
+    },
+    {
+      "type": "header",
+      "content": "Row 2 — Age 35+"
+    },
+    {
+      "type": "text",
+      "id": "row2_cohort",
+      "label": "Row 2: Cohort",
+      "default": "Age 35+"
+    },
+    {
+      "type": "text",
+      "id": "row2_protocol",
+      "label": "Row 2: Protocol",
+      "default": "1,000mg"
+    },
+    {
+      "type": "text",
+      "id": "row2_price",
+      "label": "Row 2: Price",
+      "default": "$349"
+    },
+    {
+      "type": "header",
+      "content": "Note"
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "Includes biological inputs and tracking framework. No recurring charges unless you choose continuation after Day 100."
+    },
+    {
+      "type": "color",
+      "id": "note_color",
+      "label": "Note Text Color",
+      "default": "#5C6B6E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enroll Logistics"
+    }
+  ]
+}
+{% endschema %}

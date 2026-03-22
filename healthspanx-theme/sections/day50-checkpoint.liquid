@@ -1,0 +1,361 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign slider_col = section.settings.slider_color | default: '#3D7A72' %}
+{% assign cvi_col = section.settings.cvi_font_color | default: '#1A2224' %}
+
+<style>
+  .hsx-day50 {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-day50__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hsx-day50__heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 12px 0;
+  }
+
+  .hsx-day50__sub {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 40px 0;
+    max-width: 560px;
+  }
+
+  /* Divider */
+  .hsx-day50__divider {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 32px 0;
+  }
+
+  /* Card */
+  .hsx-day50__card {
+    background-color: #FFFFFF;
+    border: 1px solid #D6DEDF;
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+  }
+
+  .hsx-day50__card-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5C6B6E;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-day50__card-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-day50__card-body:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Stability checkboxes */
+  .hsx-day50__checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .hsx-day50__checkbox-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .hsx-day50__checkbox-row input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: {{ slider_col }};
+    cursor: pointer;
+  }
+
+  .hsx-day50__checkbox-row label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1A2224;
+    cursor: pointer;
+  }
+
+  /* Placeholder */
+  .hsx-day50__placeholder {
+    background-color: #EEF3F2;
+    border: 1px dashed #D6DEDF;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+  }
+
+  .hsx-day50__placeholder p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* CVI data display */
+  .hsx-day50__cvi-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .hsx-day50__cvi-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hsx-day50__cvi-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A9DA0;
+  }
+
+  .hsx-day50__cvi-value {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: {{ cvi_col }};
+    letter-spacing: -0.02em;
+  }
+
+  .hsx-day50__cvi-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8A9DA0;
+    margin: 0 0 14px 0;
+    font-style: italic;
+  }
+
+  .hsx-day50__continue-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5C6B6E;
+    margin: 0 0 10px 0;
+  }
+
+  .hsx-day50__continue-note:last-child {
+    margin-bottom: 0;
+  }
+
+  .hsx-day50__unlock-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-day50__heading {
+      font-size: 26px;
+    }
+
+    .hsx-day50__card {
+      padding: 20px 18px;
+    }
+
+    .hsx-day50__cvi-value {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<section class="hsx-day50" id="day50-checkpoint">
+  <div class="hsx-day50__inner">
+
+    <!-- Heading -->
+    <h1 class="hsx-day50__heading">
+      {{ section.settings.heading_text | default: 'Day 50 Calibration' }}
+    </h1>
+    <p class="hsx-day50__sub">
+      Structured midpoint capture. Calibration reference, not outcome determination. Final interpretation at Day 100.
+    </p>
+
+    <hr class="hsx-day50__divider" />
+
+    <!-- Stability confirmations -->
+    <div class="hsx-day50__card">
+      <h3 class="hsx-day50__card-heading">Stability Confirmations</h3>
+
+      <div class="hsx-day50__checkbox-row">
+        <input type="checkbox" id="hsx-stability-1" name="stability_1" />
+        <label for="hsx-stability-1">
+          {{ section.settings.stability_checkbox_1 | default: 'I have maintained stable dosage throughout Days 1–50.' }}
+        </label>
+      </div>
+
+      <div class="hsx-day50__checkbox-row">
+        <input type="checkbox" id="hsx-stability-2" name="stability_2" />
+        <label for="hsx-stability-2">
+          {{ section.settings.stability_checkbox_2 | default: 'I have not introduced new supplements or topical products.' }}
+        </label>
+      </div>
+
+      <div class="hsx-day50__checkbox-row">
+        <input type="checkbox" id="hsx-stability-3" name="stability_3" />
+        <label for="hsx-stability-3">
+          {{ section.settings.stability_checkbox_3 | default: 'I have not undergone any cosmetic procedures during this period.' }}
+        </label>
+      </div>
+
+      <div class="hsx-day50__checkbox-row">
+        <input type="checkbox" id="hsx-stability-4" name="stability_4" />
+        <label for="hsx-stability-4">
+          {{ section.settings.stability_checkbox_4 | default: 'I confirm exposure conditions have remained consistent.' }}
+        </label>
+      </div>
+    </div>
+
+    <!-- Midpoint questionnaire -->
+    <div class="hsx-day50__card">
+      <h3 class="hsx-day50__card-heading">Midpoint Questionnaire</h3>
+      <p class="hsx-day50__card-body">
+        Day 0 values shown for reference. 4 pillars assessed.
+      </p>
+      <div class="hsx-day50__placeholder">
+        <p>Developer placeholder — 4-pillar questionnaire with Day 0 reference values (slider inputs, accent color: {{ slider_col }}).</p>
+      </div>
+    </div>
+
+    <!-- Photo capture -->
+    <div class="hsx-day50__card">
+      <h3 class="hsx-day50__card-heading">Photo Capture</h3>
+      <p class="hsx-day50__card-body">
+        Photo capture with Day 0 overlay for reference.
+      </p>
+      <div class="hsx-day50__placeholder">
+        <p>Developer placeholder — Photo capture interface with Day 0 side-by-side overlay.</p>
+      </div>
+    </div>
+
+    <!-- Results display -->
+    <div class="hsx-day50__card">
+      <h3 class="hsx-day50__card-heading">Midpoint Data Recorded</h3>
+
+      <div class="hsx-day50__cvi-row">
+        <div class="hsx-day50__cvi-item">
+          <span class="hsx-day50__cvi-label">Baseline CVI</span>
+          <span class="hsx-day50__cvi-value">XX</span>
+        </div>
+        <div class="hsx-day50__cvi-item">
+          <span class="hsx-day50__cvi-label">Current CVI</span>
+          <span class="hsx-day50__cvi-value">XX</span>
+        </div>
+      </div>
+
+      <p class="hsx-day50__cvi-note">
+        This value is descriptive only. Does not indicate success or failure.
+      </p>
+
+      <p class="hsx-day50__continue-note">
+        Days 51–100 continue under identical conditions.
+      </p>
+
+      <p class="hsx-day50__unlock-note">
+        Day 100 unlocks in: XX days.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Day 50 Checkpoint",
+  "tag": "div",
+  "class": "hsx-day50-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "Day 50 Calibration"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider / accent color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "color",
+      "id": "cvi_font_color",
+      "label": "CVI data font color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "text",
+      "id": "stability_checkbox_1",
+      "label": "Stability checkbox 1",
+      "default": "I have maintained stable dosage throughout Days 1–50."
+    },
+    {
+      "type": "text",
+      "id": "stability_checkbox_2",
+      "label": "Stability checkbox 2",
+      "default": "I have not introduced new supplements or topical products."
+    },
+    {
+      "type": "text",
+      "id": "stability_checkbox_3",
+      "label": "Stability checkbox 3",
+      "default": "I have not undergone any cosmetic procedures during this period."
+    },
+    {
+      "type": "text",
+      "id": "stability_checkbox_4",
+      "label": "Stability checkbox 4",
+      "default": "I confirm exposure conditions have remained consistent."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Day 50 Checkpoint"
+    }
+  ]
+}
+{% endschema %}

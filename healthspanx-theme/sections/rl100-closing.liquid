@@ -1,0 +1,158 @@
+<section
+  class="rl100-closing"
+  style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.section_padding_top }}px; padding-bottom: {{ section.settings.section_padding_bottom }}px;"
+  data-section-id="{{ section.id }}"
+  data-section-type="rl100-closing"
+>
+  <div class="rl100-closing__inner">
+
+    {% if section.settings.body_text != blank %}
+      <p
+        class="rl100-closing__body"
+        style="color: {{ section.settings.body_color }};"
+      >
+        {{ section.settings.body_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.note_text != blank %}
+      <p
+        class="rl100-closing__note"
+        style="color: {{ section.settings.note_color }};"
+      >
+        {{ section.settings.note_text }}
+      </p>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .rl100-closing {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .rl100-closing__inner {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .rl100-closing__body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.65;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  .rl100-closing__note {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+    letter-spacing: 0.02em;
+    padding-top: 8px;
+    border-top: 1px solid #D6DEDF;
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .rl100-closing {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .rl100-closing__body {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RL100 Closing",
+  "tag": "section",
+  "class": "section-rl100-closing",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "If participation is appropriate, the next step will be presented separately. No action is required at this time."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Note Text"
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "No enrollment links, product names, or pricing on this page."
+    },
+    {
+      "type": "color",
+      "id": "note_color",
+      "label": "Note Text Color",
+      "default": "#5C6B6E"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 24,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 24,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "RL100 Closing"
+    }
+  ]
+}
+{% endschema %}

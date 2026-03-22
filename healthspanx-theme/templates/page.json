@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "page-content": {
+      "type": "page-content",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "text_color": "#1A2224"
+      }
+    }
+  },
+  "order": [
+    "page-content"
+  ]
+}

@@ -1,0 +1,240 @@
+{% assign bg = section.settings.bg_color | default: '#1E2B2F' %}
+{% assign text_col = section.settings.text_color | default: '#EEF3F2' %}
+{% assign link_col = section.settings.link_color | default: '#8A9DA0' %}
+{% assign brand = section.settings.brand_name | default: 'HealthspanX' %}
+{% assign tagline = section.settings.tagline | default: 'Radiant Life™ is a structured measurement system, not a medical service.' %}
+{% assign copyright = section.settings.copyright_text | default: '' %}
+
+<style>
+  .hsx-footer {
+    background-color: {{ bg }};
+    color: {{ text_col }};
+    padding: 48px 24px 32px;
+  }
+
+  .hsx-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hsx-footer__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hsx-footer__brand {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .hsx-footer__brand-name {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: {{ text_col }};
+    letter-spacing: -0.01em;
+    margin: 0 0 10px 0;
+    display: block;
+  }
+
+  .hsx-footer__tagline {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: {{ link_col }};
+    margin: 0;
+    max-width: 360px;
+  }
+
+  .hsx-footer__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .hsx-footer__links a {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: {{ link_col }};
+    text-decoration: none;
+    transition: color 0.18s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .hsx-footer__links a:hover,
+  .hsx-footer__links a:focus {
+    color: {{ text_col }};
+  }
+
+  .hsx-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 24px;
+  }
+
+  .hsx-footer__copyright {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: {{ link_col }};
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-footer__top {
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .hsx-footer__links {
+      align-items: flex-start;
+    }
+
+    .hsx-footer__bottom {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<footer class="hsx-footer" role="contentinfo">
+  <div class="hsx-footer__inner">
+    <div class="hsx-footer__top">
+
+      <!-- Brand + tagline -->
+      <div class="hsx-footer__brand">
+        <span class="hsx-footer__brand-name">{{ brand }}</span>
+        {%- if tagline != blank -%}
+          <p class="hsx-footer__tagline">{{ tagline }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Policy links -->
+      <nav class="hsx-footer__links" aria-label="Legal and policy links">
+        {%- if section.settings.privacy_url != blank -%}
+          <a href="{{ section.settings.privacy_url }}">Privacy Policy</a>
+        {%- else -%}
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+        {%- endif -%}
+
+        {%- if section.settings.terms_url != blank -%}
+          <a href="{{ section.settings.terms_url }}">Terms of Use</a>
+        {%- else -%}
+          <a href="/pages/terms-of-use">Terms of Use</a>
+        {%- endif -%}
+
+        {%- if section.settings.disclaimer_url != blank -%}
+          <a href="{{ section.settings.disclaimer_url }}">Medical Disclaimer</a>
+        {%- else -%}
+          <a href="/pages/medical-disclaimer">Medical Disclaimer</a>
+        {%- endif -%}
+
+        {%- if section.settings.refund_url != blank -%}
+          <a href="{{ section.settings.refund_url }}">Refund Policy</a>
+        {%- else -%}
+          <a href="/pages/refund-policy">Refund Policy</a>
+        {%- endif -%}
+
+        {%- if section.settings.data_url != blank -%}
+          <a href="{{ section.settings.data_url }}">Data Continuity</a>
+        {%- else -%}
+          <a href="/pages/data-continuity">Data Continuity</a>
+        {%- endif -%}
+      </nav>
+    </div>
+
+    <!-- Copyright -->
+    <div class="hsx-footer__bottom">
+      <p class="hsx-footer__copyright">
+        {%- if copyright != blank -%}
+          {{ copyright }}
+        {%- else -%}
+          &copy; {{ 'now' | date: '%Y' }} {{ brand }}. All rights reserved.
+        {%- endif -%}
+      </p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "class": "hsx-footer-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#1E2B2F"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "HealthspanX"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Radiant Life™ is a structured measurement system, not a medical service."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#EEF3F2"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#8A9DA0"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "info": "Leave blank to auto-generate with current year."
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy Policy URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Terms of Use URL"
+    },
+    {
+      "type": "url",
+      "id": "disclaimer_url",
+      "label": "Medical Disclaimer URL"
+    },
+    {
+      "type": "url",
+      "id": "refund_url",
+      "label": "Refund Policy URL"
+    },
+    {
+      "type": "url",
+      "id": "data_url",
+      "label": "Data Continuity URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

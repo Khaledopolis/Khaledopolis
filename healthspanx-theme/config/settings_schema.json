@@ -1,0 +1,475 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "HealthspanX — Radiant Life™",
+    "theme_version": "4.1.0",
+    "theme_author": "HealthspanX",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (SVG or PNG)"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width (px)",
+        "min": 60,
+        "max": 240,
+        "step": 4,
+        "default": 140
+      }
+    ]
+  },
+  {
+    "name": "Colors — Dark Anchors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ocean_depth",
+        "label": "Ocean Depth",
+        "info": "Hero bg, Footer bg, Nav dark. Hex: #1E2B2F",
+        "default": "#1E2B2F"
+      },
+      {
+        "type": "color",
+        "id": "color_deep_slate",
+        "label": "Deep Slate",
+        "info": "Timeline, Dark Feature Bands, Quote Band. Hex: #28383D",
+        "default": "#28383D"
+      },
+      {
+        "type": "color",
+        "id": "color_dusk_teal",
+        "label": "Dusk Teal",
+        "info": "Dark card bg, hover states, dark borders. Hex: #2A4A50",
+        "default": "#2A4A50"
+      },
+      {
+        "type": "color",
+        "id": "color_panel_border",
+        "label": "Panel Border",
+        "info": "Dark section dividers. Hex: #334A50",
+        "default": "#334A50"
+      }
+    ]
+  },
+  {
+    "name": "Colors — Light Surfaces",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_pure_white",
+        "label": "Pure White",
+        "info": "Forms, card interiors, nav bg. Hex: #FFFFFF",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_field_white",
+        "label": "Field White",
+        "info": "Primary page bg, Steps, Tracker. Hex: #F7F6F3",
+        "default": "#F7F6F3"
+      },
+      {
+        "type": "color",
+        "id": "color_teal_wash",
+        "label": "Teal Wash",
+        "info": "Assessment bg, highlighted blocks. Hex: #EAF3F1",
+        "default": "#EAF3F1"
+      },
+      {
+        "type": "color",
+        "id": "color_off_white",
+        "label": "Off White",
+        "info": "Scale buttons, input bg. Hex: #F3F2EF",
+        "default": "#F3F2EF"
+      }
+    ]
+  },
+  {
+    "name": "Colors — System Accents",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_mineral_teal",
+        "label": "Mineral Teal",
+        "info": "Nav CTA, eyebrows, active states, list dots. Hex: #3D7A72",
+        "default": "#3D7A72"
+      },
+      {
+        "type": "color",
+        "id": "color_sage_green",
+        "label": "Sage Green",
+        "info": "Completion states, Badges, Done Nodes. Hex: #7A9E8A",
+        "default": "#7A9E8A"
+      },
+      {
+        "type": "color",
+        "id": "color_teal_border",
+        "label": "Teal Border",
+        "info": "Borders within Teal Wash sections. Hex: #BDD8D2",
+        "default": "#BDD8D2"
+      }
+    ]
+  },
+  {
+    "name": "Colors — Warm Accents (Clay)",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_clay",
+        "label": "Clay",
+        "info": "Dermal Delta chart, Foundation label, brand Eyebrows. Max 5-8 per page. NEVER as large bg. Hex: #C4896A",
+        "default": "#C4896A"
+      },
+      {
+        "type": "color",
+        "id": "color_clay_wash",
+        "label": "Clay Wash",
+        "info": "Graduation bg, Quote Block bg. Hex: #E8D4C8",
+        "default": "#E8D4C8"
+      }
+    ]
+  },
+  {
+    "name": "Colors — Typography",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink",
+        "info": "Headings (light bg), CTA fill, data numerals. Hex: #1A2224",
+        "default": "#1A2224"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted",
+        "info": "Secondary body, descriptions. Hex: #5C6B6E",
+        "default": "#5C6B6E"
+      },
+      {
+        "type": "color",
+        "id": "color_light_muted",
+        "label": "Light Muted",
+        "info": "Nav links, captions, Eyebrow support. Hex: #8A9DA0",
+        "default": "#8A9DA0"
+      },
+      {
+        "type": "color",
+        "id": "color_parchment",
+        "label": "Parchment",
+        "info": "Headings on dark bg, Hero numerals. Hex: #EEF3F2",
+        "default": "#EEF3F2"
+      }
+    ]
+  },
+  {
+    "name": "Colors — Borders",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_system_border",
+        "label": "System Border",
+        "info": "General borders, cards, inputs. Hex: #D6DEDF",
+        "default": "#D6DEDF"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_border",
+        "label": "Warm Border",
+        "info": "Teal Wash card borders, Assessment forms. Hex: #C8D4D0",
+        "default": "#C8D4D0"
+      },
+      {
+        "type": "color",
+        "id": "color_subtle_border",
+        "label": "Subtle Border",
+        "info": "Page-level section dividers. Hex: #E8ECED",
+        "default": "#E8ECED"
+      }
+    ]
+  },
+  {
+    "name": "Typography — Sizes",
+    "settings": [
+      {
+        "type": "range",
+        "id": "font_h1_size",
+        "label": "H1 Hero size (px)",
+        "min": 36,
+        "max": 72,
+        "step": 2,
+        "default": 52,
+        "info": "Desktop. Scales automatically on mobile. Brief spec: 48–56px."
+      },
+      {
+        "type": "range",
+        "id": "font_h2_size",
+        "label": "H2 Section size (px)",
+        "min": 24,
+        "max": 52,
+        "step": 2,
+        "default": 36,
+        "info": "Brief spec: 32–40px."
+      },
+      {
+        "type": "range",
+        "id": "font_eyebrow_size",
+        "label": "Eyebrow size (px)",
+        "min": 9,
+        "max": 14,
+        "step": 1,
+        "default": 11,
+        "info": "Inter Medium 500. Letter-spacing 0.2em. Uppercase."
+      },
+      {
+        "type": "range",
+        "id": "font_body_size",
+        "label": "Body text size (px)",
+        "min": 12,
+        "max": 18,
+        "step": 1,
+        "default": 14,
+        "info": "Inter Light 300. Line-height 1.85."
+      },
+      {
+        "type": "range",
+        "id": "font_data_size",
+        "label": "Data Display size (px)",
+        "min": 24,
+        "max": 52,
+        "step": 2,
+        "default": 36,
+        "info": "Libre Baskerville. Used for CVI scores, prices."
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "range",
+        "id": "btn_border_radius",
+        "label": "Button border radius (px)",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "color",
+        "id": "btn_primary_bg",
+        "label": "Primary button background",
+        "default": "#3D7A72"
+      },
+      {
+        "type": "color",
+        "id": "btn_primary_text",
+        "label": "Primary button text",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "btn_dark_bg",
+        "label": "Dark button background",
+        "default": "#1A2224"
+      },
+      {
+        "type": "color",
+        "id": "btn_dark_text",
+        "label": "Dark button text",
+        "default": "#EEF3F2"
+      }
+    ]
+  },
+  {
+    "name": "Spacing",
+    "settings": [
+      {
+        "type": "range",
+        "id": "section_padding_large",
+        "label": "Section padding large (px)",
+        "min": 48,
+        "max": 160,
+        "step": 8,
+        "default": 96
+      },
+      {
+        "type": "range",
+        "id": "section_padding_medium",
+        "label": "Section padding medium (px)",
+        "min": 32,
+        "max": 120,
+        "step": 8,
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "section_padding_small",
+        "label": "Section padding small (px)",
+        "min": 24,
+        "max": 80,
+        "step": 8,
+        "default": 48
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "color",
+        "id": "header_bg",
+        "label": "Header background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "header_border_color",
+        "label": "Header border color",
+        "default": "#E8ECED"
+      },
+      {
+        "type": "color",
+        "id": "header_nav_link_color",
+        "label": "Nav link color",
+        "default": "#8A9DA0"
+      },
+      {
+        "type": "color",
+        "id": "header_nav_link_hover",
+        "label": "Nav link hover color",
+        "default": "#1A2224"
+      },
+      {
+        "type": "text",
+        "id": "header_cta_text",
+        "label": "Header CTA text",
+        "default": "Begin the Assessment"
+      },
+      {
+        "type": "url",
+        "id": "header_cta_url",
+        "label": "Header CTA URL"
+      },
+      {
+        "type": "color",
+        "id": "header_cta_bg",
+        "label": "Header CTA background",
+        "default": "#3D7A72"
+      },
+      {
+        "type": "color",
+        "id": "header_cta_text_color",
+        "label": "Header CTA text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_sticky",
+        "label": "Sticky header",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "color",
+        "id": "footer_bg",
+        "label": "Footer background",
+        "default": "#1E2B2F"
+      },
+      {
+        "type": "color",
+        "id": "footer_text_color",
+        "label": "Footer text color",
+        "default": "#EEF3F2"
+      },
+      {
+        "type": "color",
+        "id": "footer_link_color",
+        "label": "Footer link color",
+        "default": "#8A9DA0"
+      },
+      {
+        "type": "text",
+        "id": "footer_brand_name",
+        "label": "Brand name",
+        "default": "HealthspanX"
+      },
+      {
+        "type": "text",
+        "id": "footer_tagline",
+        "label": "Footer tagline",
+        "default": "Radiant Life™ is a structured measurement system, not a medical service."
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright text",
+        "default": "© 2026 HealthspanX. All rights reserved."
+      },
+      {
+        "type": "url",
+        "id": "footer_privacy_url",
+        "label": "Privacy Policy URL"
+      },
+      {
+        "type": "url",
+        "id": "footer_terms_url",
+        "label": "Terms of Use URL"
+      },
+      {
+        "type": "url",
+        "id": "footer_disclaimer_url",
+        "label": "Medical Disclaimer URL"
+      },
+      {
+        "type": "url",
+        "id": "footer_refund_url",
+        "label": "Refund Policy URL"
+      },
+      {
+        "type": "url",
+        "id": "footer_data_url",
+        "label": "Data Continuity URL"
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_animations",
+        "label": "Enable scroll animations",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky_header",
+        "label": "Enable sticky header shadow on scroll",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "custom_css",
+        "label": "Custom CSS"
+      }
+    ]
+  }
+]

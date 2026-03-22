@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "day50-checkpoint": {
+      "type": "day50-checkpoint",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_text": "Day 50 Calibration",
+        "heading_color": "#1A2224",
+        "slider_color": "#3D7A72",
+        "cvi_font_color": "#1A2224",
+        "stability_checkbox_1": "I have maintained stable dosage throughout Days 1–50.",
+        "stability_checkbox_2": "I have not introduced new supplements or topical products.",
+        "stability_checkbox_3": "I have not undergone any cosmetic procedures during this period.",
+        "stability_checkbox_4": "I confirm exposure conditions have remained consistent."
+      }
+    }
+  },
+  "order": [
+    "day50-checkpoint"
+  ]
+}

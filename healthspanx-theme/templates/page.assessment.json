@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "assessment-hero": {
+      "type": "assessment-hero",
+      "settings": {}
+    },
+    "assessment-what-is": {
+      "type": "assessment-what-is",
+      "settings": {}
+    },
+    "assessment-what-is-not": {
+      "type": "assessment-what-is-not",
+      "settings": {}
+    },
+    "assessment-data-use": {
+      "type": "assessment-data-use",
+      "settings": {}
+    },
+    "assessment-before-begin": {
+      "type": "assessment-before-begin",
+      "settings": {}
+    },
+    "assessment-cta": {
+      "type": "assessment-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "assessment-hero",
+    "assessment-what-is",
+    "assessment-what-is-not",
+    "assessment-data-use",
+    "assessment-before-begin",
+    "assessment-cta"
+  ]
+}

@@ -1,0 +1,210 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign page_title_override = section.settings.page_title | default: '' %}
+{% assign page_intro = section.settings.page_intro | default: '' %}
+
+<style>
+  .hsx-governance {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-governance__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hsx-governance__eyebrow {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #8A9DA0;
+    margin: 0 0 12px 0;
+    display: block;
+  }
+
+  .hsx-governance__heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-governance__intro {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 36px 0;
+  }
+
+  .hsx-governance__divider {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 32px 0;
+  }
+
+  .hsx-governance__body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #5C6B6E;
+  }
+
+  .hsx-governance__body h2,
+  .hsx-governance__body h3 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: {{ heading_col }};
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+
+  .hsx-governance__body h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .hsx-governance__body h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .hsx-governance__body p {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  .hsx-governance__body a {
+    color: #3D7A72;
+    text-decoration: underline;
+  }
+
+  .hsx-governance__body a:hover {
+    opacity: 0.8;
+  }
+
+  .hsx-governance__body ul,
+  .hsx-governance__body ol {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+
+  .hsx-governance__body li {
+    margin-bottom: 6px;
+  }
+
+  .hsx-governance__body hr {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 28px 0;
+  }
+
+  .hsx-governance__last-updated {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #8A9DA0;
+    margin-top: 48px;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-governance__heading {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<section class="hsx-governance">
+  <div class="hsx-governance__inner">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="hsx-governance__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+
+    <h1 class="hsx-governance__heading">
+      {%- if page_title_override != blank -%}
+        {{ page_title_override }}
+      {%- elsif page.title != blank -%}
+        {{ page.title }}
+      {%- endif -%}
+    </h1>
+
+    {%- if page_intro != blank -%}
+      <p class="hsx-governance__intro">{{ page_intro }}</p>
+    {%- endif -%}
+
+    <hr class="hsx-governance__divider" />
+
+    <div class="hsx-governance__body">
+      {{ page.content }}
+    </div>
+
+    {%- if section.settings.show_last_updated -%}
+      <p class="hsx-governance__last-updated">
+        Last updated: {{ section.settings.last_updated_date | default: 'See document header' }}
+      </p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Governance Page",
+  "tag": "div",
+  "class": "hsx-governance-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "info": "Small uppercase label above the heading (e.g. 'Legal', 'Policy')."
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Override page title",
+      "info": "Leave blank to use the Shopify page title."
+    },
+    {
+      "type": "textarea",
+      "id": "page_intro",
+      "label": "Introduction paragraph",
+      "info": "Optional lead sentence below the heading."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_last_updated",
+      "label": "Show last updated date",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "last_updated_date",
+      "label": "Last updated date",
+      "info": "Shown only when 'Show last updated date' is checked."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Governance Page"
+    }
+  ]
+}
+{% endschema %}

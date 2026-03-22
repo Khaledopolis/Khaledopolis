@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "day100-graduation": {
+      "type": "day100-graduation",
+      "settings": {
+        "bg_color": "#E8D4C8",
+        "heading_color": "#1A2224",
+        "badge_bg": "#7A9E8A",
+        "badge_text_color": "#FFFFFF",
+        "clay_accent_color": "#C4896A",
+        "cta_continuation_url": "/pages/graduate"
+      }
+    }
+  },
+  "order": [
+    "day100-graduation"
+  ]
+}

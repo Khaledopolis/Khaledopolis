@@ -1,0 +1,241 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #assessment-hero-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    min-height: {{ section.settings.section_height }};
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Abstract CSS grid/axis background texture */
+  #assessment-hero-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(61, 122, 114, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61, 122, 114, 0.08) 1px, transparent 1px),
+      linear-gradient(rgba(61, 122, 114, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61, 122, 114, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #assessment-hero-{{ section.id }}::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 100%, rgba(40, 56, 61, 0.7) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 50% at 50% 0%, rgba(40, 56, 61, 0.5) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #assessment-hero-{{ section.id }} .assessment-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  #assessment-hero-{{ section.id }} .assessment-hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: {{ section.settings.eyebrow_color }};
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    display: block;
+  }
+
+  #assessment-hero-{{ section.id }} .assessment-hero-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: {{ section.settings.heading_size | default: '48px' }};
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px 0;
+  }
+
+  #assessment-hero-{{ section.id }} .assessment-hero-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: {{ section.settings.sub_color }};
+    line-height: 1.7;
+    margin: 0 0 24px 0;
+    opacity: 0.88;
+  }
+
+  #assessment-hero-{{ section.id }} .assessment-hero-clarifying {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: {{ section.settings.clarifying_color }};
+    line-height: 1.65;
+    margin: 0;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    #assessment-hero-{{ section.id }} .assessment-hero-inner {
+      padding: 60px 24px;
+    }
+
+    #assessment-hero-{{ section.id }} .assessment-hero-heading {
+      font-size: clamp(28px, 7vw, 44px);
+    }
+
+    #assessment-hero-{{ section.id }} .assessment-hero-sub {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #assessment-hero-{{ section.id }} .assessment-hero-inner {
+      padding: 48px 20px;
+    }
+  }
+</style>
+
+<section id="assessment-hero-{{ section.id }}" role="banner">
+  <div class="assessment-hero-inner">
+    {% if section.settings.eyebrow_text != blank %}
+      <span class="assessment-hero-eyebrow">{{ section.settings.eyebrow_text }}</span>
+    {% endif %}
+    <h1 class="assessment-hero-heading">{{ section.settings.heading_text }}</h1>
+    <p class="assessment-hero-sub">{{ section.settings.sub_text }}</p>
+    {% if section.settings.clarifying_text != blank %}
+      <p class="assessment-hero-clarifying">{{ section.settings.clarifying_text }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Assessment — Hero",
+  "tag": "section",
+  "class": "assessment-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#28383D"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        { "value": "50vh", "label": "Short (50vh)" },
+        { "value": "60vh", "label": "Medium (60vh)" },
+        { "value": "70vh", "label": "Tall (70vh)" },
+        { "value": "80vh", "label": "X-Tall (80vh)" }
+      ],
+      "default": "60vh"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "RADIANT LIFE™"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "The Radiant Life™ Assessment"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        { "value": "36px", "label": "36px" },
+        { "value": "42px", "label": "42px" },
+        { "value": "48px", "label": "48px" },
+        { "value": "54px", "label": "54px" }
+      ],
+      "default": "48px"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "sub_text",
+      "label": "Subtitle Text",
+      "default": "The structured entry point to the Radiant Life™ system. This assessment establishes biological context before any protocol is considered."
+    },
+    {
+      "type": "color",
+      "id": "sub_color",
+      "label": "Subtitle Color",
+      "default": "#EAF3F1"
+    },
+    {
+      "type": "header",
+      "content": "Clarifying Line"
+    },
+    {
+      "type": "textarea",
+      "id": "clarifying_text",
+      "label": "Clarifying Text (smaller)",
+      "default": "Internally, this assessment functions as a clinical audit — a structured, rule-based evaluation, not a medical diagnosis or treatment."
+    },
+    {
+      "type": "color",
+      "id": "clarifying_color",
+      "label": "Clarifying Text Color",
+      "default": "#8A9DA0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Assessment — Hero"
+    }
+  ]
+}
+{% endschema %}

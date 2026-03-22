@@ -1,0 +1,235 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #assessment-cta-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 80px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-notice {
+    width: 100%;
+    background-color: #EEF3F2;
+    border: 1px solid #D6DEDF;
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-notice-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1A2224;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-notice-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.7;
+    margin: 0 0 12px 0;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-privacy-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #3D7A72;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-privacy-link:hover {
+    opacity: 0.75;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-btn {
+    display: inline-block;
+    background-color: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 17px 48px;
+    border-radius: 3px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  #assessment-cta-{{ section.id }} .assessment-cta-micro {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8A9DA0;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    #assessment-cta-{{ section.id }} {
+      padding: 64px 24px;
+    }
+
+    #assessment-cta-{{ section.id }} .assessment-cta-notice {
+      padding: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #assessment-cta-{{ section.id }} {
+      padding: 56px 20px;
+    }
+
+    #assessment-cta-{{ section.id }} .assessment-cta-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<section id="assessment-cta-{{ section.id }}">
+  <div class="assessment-cta-inner">
+
+    <div class="assessment-cta-notice">
+      <p class="assessment-cta-notice-heading">{{ section.settings.notice_heading }}</p>
+      <p class="assessment-cta-notice-body">{{ section.settings.notice_body }}</p>
+      <a
+        href="{{ section.settings.privacy_url }}"
+        class="assessment-cta-privacy-link"
+      >
+        {{ section.settings.privacy_link_text }}
+      </a>
+    </div>
+
+    <a href="{{ section.settings.cta_url }}" class="assessment-cta-btn">
+      {{ section.settings.cta_text }}
+    </a>
+
+    {% if section.settings.micro_text != blank %}
+      <p class="assessment-cta-micro">{{ section.settings.micro_text }}</p>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Assessment — CTA",
+  "tag": "section",
+  "class": "assessment-cta-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Data & Participation Notice"
+    },
+    {
+      "type": "text",
+      "id": "notice_heading",
+      "label": "Notice Heading",
+      "default": "Data & Participation Notice"
+    },
+    {
+      "type": "textarea",
+      "id": "notice_body",
+      "label": "Notice Body",
+      "default": "Your responses will determine eligibility and structure any future 100-day window. Optional research contribution presented separately after enrollment."
+    },
+    {
+      "type": "header",
+      "content": "Privacy Link"
+    },
+    {
+      "type": "text",
+      "id": "privacy_link_text",
+      "label": "Privacy Link Text",
+      "default": "View Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy Policy URL",
+      "default": "/pages/privacy-policy"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Label",
+      "default": "Begin the Assessment"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL",
+      "default": "/pages/assessment"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Button Background Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Button Text Color",
+      "default": "#EEF3F2"
+    },
+    {
+      "type": "header",
+      "content": "Micro Text"
+    },
+    {
+      "type": "text",
+      "id": "micro_text",
+      "label": "Micro Text",
+      "default": "Takes approximately 5 minutes. No product access is granted at this stage."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Assessment — CTA"
+    }
+  ]
+}
+{% endschema %}

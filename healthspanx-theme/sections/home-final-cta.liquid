@@ -1,0 +1,193 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #home-final-cta-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.section_padding_top }}px 40px {{ section.settings.section_padding_bottom }}px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #home-final-cta-{{ section.id }} .final-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  #home-final-cta-{{ section.id }} .final-cta-body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: {{ section.settings.body_color }};
+    line-height: 1.5;
+    margin: 0 0 36px 0;
+  }
+
+  #home-final-cta-{{ section.id }} .final-cta-btn {
+    display: inline-block;
+    background-color: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 3px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+  }
+
+  #home-final-cta-{{ section.id }} .final-cta-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  #home-final-cta-{{ section.id }} .final-cta-micro {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8A9DA0;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    #home-final-cta-{{ section.id }} {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    #home-final-cta-{{ section.id }} .final-cta-body {
+      font-size: clamp(18px, 4vw, 24px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    #home-final-cta-{{ section.id }} {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #home-final-cta-{{ section.id }} .final-cta-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<section id="home-final-cta-{{ section.id }}">
+  <div class="final-cta-inner">
+    <p class="final-cta-body">{{ section.settings.body_text }}</p>
+    <a href="{{ section.settings.cta_url }}" class="final-cta-btn">
+      {{ section.settings.cta_text }}
+    </a>
+    {% if section.settings.micro_text != blank %}
+      <p class="final-cta-micro">{{ section.settings.micro_text }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Final CTA",
+  "tag": "section",
+  "class": "home-final-cta-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "If you want a system that identifies what you need — not one that asks you to guess —"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Label",
+      "default": "Begin the Assessment"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button Link",
+      "default": "/pages/assessment"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Button Background Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Micro Text"
+    },
+    {
+      "type": "text",
+      "id": "micro_text",
+      "label": "Micro Text",
+      "default": "Takes approximately 5 minutes. No product access is granted at this stage."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Final CTA"
+    }
+  ]
+}
+{% endschema %}

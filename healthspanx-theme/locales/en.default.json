@@ -1,0 +1,49 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close_modal": "Close",
+      "open_menu": "Open menu",
+      "close_menu": "Close menu"
+    },
+    "meta": {
+      "tags": "Tagged with",
+      "page": "Page"
+    }
+  },
+  "layout": {
+    "header": {
+      "begin_assessment": "Begin the Assessment"
+    },
+    "footer": {
+      "copyright": "All rights reserved",
+      "links": {
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use",
+        "medical": "Medical Disclaimer",
+        "refund": "Refund Policy",
+        "data": "Data Continuity"
+      }
+    }
+  },
+  "sections": {
+    "accordion": {
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "checkout": {
+      "proceed_to_payment": "Proceed to Payment",
+      "all_required": "Please acknowledge all conditions before proceeding."
+    },
+    "day0": {
+      "activate": "Activate Day 0",
+      "confirm_required": "Please confirm your understanding before activating."
+    }
+  },
+  "products": {
+    "modal": {
+      "close": "Close",
+      "learn_more": "Learn More"
+    }
+  }
+}

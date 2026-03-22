@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "enroll-invitation": {
+      "type": "enroll-invitation",
+      "settings": {}
+    },
+    "enroll-includes": {
+      "type": "enroll-includes",
+      "settings": {}
+    },
+    "enroll-logistics": {
+      "type": "enroll-logistics",
+      "settings": {}
+    },
+    "enroll-refund-cta": {
+      "type": "enroll-refund-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "enroll-invitation",
+    "enroll-includes",
+    "enroll-logistics",
+    "enroll-refund-cta"
+  ]
+}

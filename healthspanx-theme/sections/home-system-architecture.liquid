@@ -1,0 +1,330 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #home-sys-arch-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 96px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 56px 0;
+  }
+
+  /* Horizontal layout */
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(33.33% / 2);
+    right: calc(33.33% / 2);
+    height: 1px;
+    background-color: {{ section.settings.timeline_color }};
+    z-index: 0;
+  }
+
+  /* Vertical layout */
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--vertical::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 11px;
+    width: 1px;
+    background-color: {{ section.settings.timeline_color }};
+    z-index: 0;
+  }
+
+  /* Step card */
+  #home-sys-arch-{{ section.id }} .sys-arch-step {
+    position: relative;
+    z-index: 1;
+    padding: 0 32px 0 0;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--vertical .sys-arch-step {
+    padding: 0 0 40px 40px;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-step__accent {
+    width: 24px;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+    margin-bottom: 20px;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--vertical .sys-arch-step__accent {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 24px;
+    height: 2px;
+    margin-bottom: 0;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-step__node {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: {{ section.settings.accent_color }};
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-steps--vertical .sys-arch-step__node {
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    margin-bottom: 0;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-step__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: {{ section.settings.eyebrow_color }};
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    display: block;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-step__title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.25;
+    margin: 0 0 12px 0;
+  }
+
+  #home-sys-arch-{{ section.id }} .sys-arch-step__body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    #home-sys-arch-{{ section.id }} {
+      padding: 72px 24px;
+    }
+
+    #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal::before {
+      display: none;
+    }
+
+    #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal .sys-arch-step {
+      padding: 0 0 0 32px;
+    }
+
+    #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal .sys-arch-step__accent {
+      position: absolute;
+      left: 0;
+      top: 12px;
+      margin-bottom: 0;
+    }
+
+    #home-sys-arch-{{ section.id }} .sys-arch-steps--horizontal .sys-arch-step__node {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #home-sys-arch-{{ section.id }} {
+      padding: 56px 20px;
+    }
+  }
+</style>
+
+<section id="home-sys-arch-{{ section.id }}">
+  <div class="sys-arch-inner">
+    <h2 class="sys-arch-heading">{{ section.settings.heading_text }}</h2>
+
+    <div class="sys-arch-steps--{{ section.settings.layout }}">
+
+      <div class="sys-arch-step">
+        {% if section.settings.layout == 'horizontal' %}
+          <div class="sys-arch-step__node"></div>
+        {% endif %}
+        <div class="sys-arch-step__accent"></div>
+        <span class="sys-arch-step__eyebrow">Step 1</span>
+        <h3 class="sys-arch-step__title">{{ section.settings.step1_title }}</h3>
+        <p class="sys-arch-step__body">{{ section.settings.step1_body }}</p>
+      </div>
+
+      <div class="sys-arch-step">
+        {% if section.settings.layout == 'horizontal' %}
+          <div class="sys-arch-step__node"></div>
+        {% endif %}
+        <div class="sys-arch-step__accent"></div>
+        <span class="sys-arch-step__eyebrow">Step 2</span>
+        <h3 class="sys-arch-step__title">{{ section.settings.step2_title }}</h3>
+        <p class="sys-arch-step__body">{{ section.settings.step2_body }}</p>
+      </div>
+
+      <div class="sys-arch-step">
+        {% if section.settings.layout == 'horizontal' %}
+          <div class="sys-arch-step__node"></div>
+        {% endif %}
+        <div class="sys-arch-step__accent"></div>
+        <span class="sys-arch-step__eyebrow">Step 3</span>
+        <h3 class="sys-arch-step__title">{{ section.settings.step3_title }}</h3>
+        <p class="sys-arch-step__body">{{ section.settings.step3_body }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — System Architecture",
+  "tag": "section",
+  "class": "home-system-architecture-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout & Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Step Layout",
+      "options": [
+        { "value": "horizontal", "label": "Horizontal (side by side)" },
+        { "value": "vertical", "label": "Vertical (stacked)" }
+      ],
+      "default": "horizontal"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Line Color (Clay)",
+      "default": "#C4896A"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Text Color (Mineral Teal)",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "color",
+      "id": "timeline_color",
+      "label": "Timeline Connector Color",
+      "default": "#D6DEDF"
+    },
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Section Heading",
+      "default": "The Radiant Life™ System Architecture"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Step 1 — Assessment"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "Step 1 Title",
+      "default": "Assessment"
+    },
+    {
+      "type": "textarea",
+      "id": "step1_body",
+      "label": "Step 1 Body",
+      "default": "Establishes biological context."
+    },
+    {
+      "type": "header",
+      "content": "Step 2 — RL100 Tracking"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "Step 2 Title",
+      "default": "RL100 Tracking"
+    },
+    {
+      "type": "textarea",
+      "id": "step2_body",
+      "label": "Step 2 Body",
+      "default": "100-day measurement under standardized conditions."
+    },
+    {
+      "type": "header",
+      "content": "Step 3 — Outcome-Based Recommendations"
+    },
+    {
+      "type": "text",
+      "id": "step3_title",
+      "label": "Step 3 Title",
+      "default": "Outcome-Based Recommendations"
+    },
+    {
+      "type": "textarea",
+      "id": "step3_body",
+      "label": "Step 3 Body",
+      "default": "Applied only after response is observed."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — System Architecture"
+    }
+  ]
+}
+{% endschema %}

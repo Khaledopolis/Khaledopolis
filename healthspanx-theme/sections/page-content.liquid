@@ -1,0 +1,132 @@
+{% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
+{% assign text_col = section.settings.text_color | default: '#1A2224' %}
+
+<style>
+  .hsx-page-content {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-page-content__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hsx-page-content__title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: {{ text_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 32px 0;
+  }
+
+  .hsx-page-content__body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #5C6B6E;
+  }
+
+  .hsx-page-content__body h1,
+  .hsx-page-content__body h2,
+  .hsx-page-content__body h3,
+  .hsx-page-content__body h4 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: {{ text_col }};
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .hsx-page-content__body h2 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .hsx-page-content__body h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .hsx-page-content__body p {
+    margin-top: 0;
+    margin-bottom: 18px;
+  }
+
+  .hsx-page-content__body a {
+    color: #3D7A72;
+    text-decoration: underline;
+  }
+
+  .hsx-page-content__body a:hover {
+    opacity: 0.8;
+  }
+
+  .hsx-page-content__body ul,
+  .hsx-page-content__body ol {
+    padding-left: 20px;
+    margin-bottom: 18px;
+  }
+
+  .hsx-page-content__body li {
+    margin-bottom: 6px;
+  }
+
+  .hsx-page-content__body hr {
+    border: none;
+    border-top: 1px solid #D6DEDF;
+    margin: 32px 0;
+  }
+
+  .hsx-page-content__body blockquote {
+    border-left: 3px solid #D6DEDF;
+    margin: 24px 0;
+    padding: 8px 0 8px 20px;
+    color: #8A9DA0;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-page-content__title {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<section class="hsx-page-content">
+  <div class="hsx-page-content__inner">
+    {%- if page.title != blank -%}
+      <h1 class="hsx-page-content__title">{{ page.title }}</h1>
+    {%- endif -%}
+
+    <div class="hsx-page-content__body">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "tag": "div",
+  "class": "hsx-page-content-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading text color",
+      "default": "#1A2224"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Content"
+    }
+  ]
+}
+{% endschema %}

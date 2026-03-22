@@ -1,0 +1,256 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #assessment-data-use-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    font-family: 'Inter', sans-serif;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 40px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #D6DEDF;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1A2224;
+    letter-spacing: 0.01em;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger:hover {
+    background-color: rgba(61, 122, 114, 0.04);
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger .trigger-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    margin-left: 16px;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger .trigger-icon::before,
+  #assessment-data-use-{{ section.id }} .data-use-trigger .trigger-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #3D7A72;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger .trigger-icon::before {
+    width: 14px;
+    height: 2px;
+    top: 9px;
+    left: 3px;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger .trigger-icon::after {
+    width: 2px;
+    height: 14px;
+    top: 3px;
+    left: 9px;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-trigger[aria-expanded="true"] .trigger-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-panel.is-open {
+    max-height: 800px;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-panel-inner {
+    padding: 56px 40px;
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-section {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-section:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-section-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A2224;
+    line-height: 1.3;
+    margin: 0 0 16px 0;
+  }
+
+  #assessment-data-use-{{ section.id }} .data-use-section-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    #assessment-data-use-{{ section.id }} .data-use-trigger {
+      padding: 24px;
+    }
+
+    #assessment-data-use-{{ section.id }} .data-use-panel-inner {
+      padding: 40px 24px;
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #assessment-data-use-{{ section.id }} .data-use-trigger {
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    #assessment-data-use-{{ section.id }} .data-use-panel-inner {
+      padding: 32px 20px;
+    }
+  }
+</style>
+
+<section id="assessment-data-use-{{ section.id }}">
+  <button
+    class="data-use-trigger"
+    aria-expanded="false"
+    aria-controls="data-use-panel-{{ section.id }}"
+    id="data-use-btn-{{ section.id }}"
+  >
+    <span>{{ section.settings.toggle_label }}</span>
+    <span class="trigger-icon" aria-hidden="true"></span>
+  </button>
+
+  <div
+    class="data-use-panel"
+    id="data-use-panel-{{ section.id }}"
+    role="region"
+    aria-labelledby="data-use-btn-{{ section.id }}"
+  >
+    <div class="data-use-panel-inner">
+
+      <div class="data-use-section">
+        <h2 class="data-use-section-title">{{ section.settings.section_a_title }}</h2>
+        <p class="data-use-section-body">{{ section.settings.section_a_body }}</p>
+      </div>
+
+      <div class="data-use-section">
+        <h2 class="data-use-section-title">{{ section.settings.section_b_title }}</h2>
+        <p class="data-use-section-body">{{ section.settings.section_b_body }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var btn = document.getElementById('data-use-btn-{{ section.id }}');
+    var panel = document.getElementById('data-use-panel-{{ section.id }}');
+    if (btn && panel) {
+      btn.addEventListener('click', function() {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (!expanded) {
+          panel.classList.add('is-open');
+        } else {
+          panel.classList.remove('is-open');
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Assessment — Data Use & Process",
+  "tag": "section",
+  "class": "assessment-data-use-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Accordion Toggle"
+    },
+    {
+      "type": "text",
+      "id": "toggle_label",
+      "label": "Toggle Label",
+      "default": "Data Use & Process"
+    },
+    {
+      "type": "header",
+      "content": "Section A — How Your Information Is Used"
+    },
+    {
+      "type": "text",
+      "id": "section_a_title",
+      "label": "Section A Title",
+      "default": "How Your Information Is Used"
+    },
+    {
+      "type": "textarea",
+      "id": "section_a_body",
+      "label": "Section A Body",
+      "default": "Responses evaluated against standardized criteria to establish context, apply eligibility consistently, and preserve measurement integrity. Data not used to rank, forecast, or persuade."
+    },
+    {
+      "type": "header",
+      "content": "Section B — What Happens After Completion"
+    },
+    {
+      "type": "text",
+      "id": "section_b_title",
+      "label": "Section B Title",
+      "default": "What Happens After Completion"
+    },
+    {
+      "type": "textarea",
+      "id": "section_b_body",
+      "label": "Section B Body",
+      "default": "Responses reviewed within system rules. Context provided, not conclusions. Immediate activation intentionally avoided."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Assessment — Data Use & Process"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,477 @@
+{% assign bg = section.settings.bg_color | default: '#FFFFFF' %}
+{% assign link_color = section.settings.nav_link_color | default: '#8A9DA0' %}
+{% assign link_hover = section.settings.nav_link_hover_color | default: '#1A2224' %}
+{% assign cta_bg = section.settings.cta_bg_color | default: '#3D7A72' %}
+{% assign cta_text_color = section.settings.cta_text_color | default: '#FFFFFF' %}
+{% assign logo_width = section.settings.logo_width | default: 140 %}
+
+<style>
+  :root {
+    --hsx-header-bg: {{ bg }};
+    --hsx-header-link: {{ link_color }};
+    --hsx-header-link-hover: {{ link_hover }};
+    --hsx-header-cta-bg: {{ cta_bg }};
+    --hsx-header-cta-text: {{ cta_text_color }};
+    --hsx-header-logo-width: {{ logo_width }}px;
+  }
+
+  .hsx-header {
+    background-color: var(--hsx-header-bg);
+    border-bottom: 1px solid #D6DEDF;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .hsx-header--sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  .hsx-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .hsx-header__logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .hsx-header__logo a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .hsx-header__logo img {
+    width: var(--hsx-header-logo-width);
+    height: auto;
+    display: block;
+  }
+
+  .hsx-header__logo-text {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A2224;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .hsx-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hsx-header__nav li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hsx-header__nav a {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--hsx-header-link);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.18s ease;
+  }
+
+  .hsx-header__nav a:hover,
+  .hsx-header__nav a:focus {
+    color: var(--hsx-header-link-hover);
+  }
+
+  .hsx-header__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .hsx-header__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hsx-header-cta-bg);
+    color: var(--hsx-header-cta-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: opacity 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .hsx-header__cta:hover,
+  .hsx-header__cta:focus {
+    opacity: 0.88;
+    color: var(--hsx-header-cta-text);
+    text-decoration: none;
+  }
+
+  .hsx-header__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hsx-header__hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #1A2224;
+    border-radius: 2px;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .hsx-header__hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hsx-header__hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hsx-header__hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .hsx-header__mobile-nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--hsx-header-bg);
+    border-top: 1px solid #D6DEDF;
+    padding: 16px 24px 24px;
+  }
+
+  .hsx-header__mobile-nav.is-open {
+    display: flex;
+  }
+
+  .hsx-header__mobile-nav a {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--hsx-header-link);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid #D6DEDF;
+    transition: color 0.18s ease;
+  }
+
+  .hsx-header__mobile-nav a:last-of-type {
+    border-bottom: none;
+  }
+
+  .hsx-header__mobile-nav a:hover {
+    color: var(--hsx-header-link-hover);
+  }
+
+  .hsx-header__mobile-cta {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hsx-header-cta-bg) !important;
+    color: var(--hsx-header-cta-text) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border-bottom: none !important;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .hsx-header__nav {
+      display: none;
+    }
+
+    .hsx-header__right .hsx-header__cta {
+      display: none;
+    }
+
+    .hsx-header__hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<header
+  class="hsx-header{% if section.settings.sticky_header %} hsx-header--sticky{% endif %}"
+  role="banner"
+  id="hsx-site-header"
+>
+  <div class="hsx-header__inner">
+
+    <!-- Logo -->
+    <div class="hsx-header__logo">
+      <a href="/" aria-label="{{ shop.name }} — Home">
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 400
+            | image_tag:
+              width: logo_width,
+              alt: section.settings.logo.alt | default: shop.name,
+              loading: 'eager'
+          }}
+        {%- else -%}
+          <span class="hsx-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Main navigation">
+      <ul class="hsx-header__nav" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'nav_link' -%}
+            <li {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.url }}">{{ block.settings.label }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <!-- Right: CTA + Hamburger -->
+    <div class="hsx-header__right">
+      {%- if section.settings.cta_text != blank -%}
+        <a
+          href="{{ section.settings.cta_url | default: '/pages/assessment' }}"
+          class="hsx-header__cta"
+        >
+          {{ section.settings.cta_text | default: 'Begin the Assessment' }}
+        </a>
+      {%- endif -%}
+
+      <button
+        class="hsx-header__hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="hsx-mobile-nav"
+        id="hsx-hamburger-btn"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav
+    class="hsx-header__mobile-nav"
+    id="hsx-mobile-nav"
+    aria-label="Mobile navigation"
+    aria-hidden="true"
+  >
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'nav_link' -%}
+        <a href="{{ block.settings.url }}">{{ block.settings.label }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if section.settings.cta_text != blank -%}
+      <a
+        href="{{ section.settings.cta_url | default: '/pages/assessment' }}"
+        class="hsx-header__mobile-cta"
+      >
+        {{ section.settings.cta_text | default: 'Begin the Assessment' }}
+      </a>
+    {%- endif -%}
+  </nav>
+</header>
+
+<script>
+  (function () {
+    var btn = document.getElementById('hsx-hamburger-btn');
+    var mobileNav = document.getElementById('hsx-mobile-nav');
+
+    if (!btn || !mobileNav) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = mobileNav.classList.contains('is-open');
+
+      if (isOpen) {
+        mobileNav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      } else {
+        mobileNav.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        mobileNav.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      var header = document.getElementById('hsx-site-header');
+      if (header && !header.contains(e.target)) {
+        mobileNav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+        mobileNav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        btn.focus();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "div",
+  "class": "hsx-header-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 140
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "nav_link_color",
+      "label": "Nav link color",
+      "default": "#8A9DA0"
+    },
+    {
+      "type": "color",
+      "id": "nav_link_hover_color",
+      "label": "Nav link hover color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Begin the Assessment"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button URL"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA background color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Sticky header",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Navigation link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link label",
+          "default": "Page"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Home",
+            "url": "/"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "Assessment",
+            "url": "/pages/assessment"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "RL100",
+            "url": "/pages/rl100"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "label": "About",
+            "url": "/pages/about"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

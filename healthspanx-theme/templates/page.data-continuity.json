@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "governance-page": {
+      "type": "governance-page",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_color": "#1A2224",
+        "eyebrow": "Legal",
+        "page_title": "Data Continuity",
+        "page_intro": "This document describes how your Radiant Life™ documentation, measurements, and participation records are stored, retained, and transferred.",
+        "show_last_updated": true,
+        "last_updated_date": ""
+      }
+    }
+  },
+  "order": [
+    "governance-page"
+  ]
+}

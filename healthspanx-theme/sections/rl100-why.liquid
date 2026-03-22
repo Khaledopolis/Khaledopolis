@@ -1,0 +1,203 @@
+<section
+  class="rl100-why"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="rl100-why"
+>
+  <div class="rl100-why__inner">
+
+    {% if section.settings.heading_text != blank %}
+      <h2
+        class="rl100-why__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h2>
+    {% endif %}
+
+    <ul class="rl100-why__bullets" role="list">
+      {% assign bullets = section.settings.bullet_1 | append: '||' | append: section.settings.bullet_2 | append: '||' | append: section.settings.bullet_3 %}
+      {% assign bullet_array = bullets | split: '||' %}
+      {% for bullet in bullet_array %}
+        {% if bullet != blank %}
+          <li class="rl100-why__bullet">
+            <span
+              class="rl100-why__bullet-dot"
+              style="background-color: {{ section.settings.bullet_color }};"
+              aria-hidden="true"
+            ></span>
+            <span class="rl100-why__bullet-text">{{ bullet }}</span>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    {% if section.settings.closing_line != blank %}
+      <p
+        class="rl100-why__closing"
+        style="color: {{ section.settings.closing_color }};"
+      >
+        {{ section.settings.closing_line }}
+      </p>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .rl100-why {
+    padding: 80px 24px;
+  }
+
+  .rl100-why__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .rl100-why__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 40px;
+  }
+
+  .rl100-why__bullets {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rl100-why__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .rl100-why__bullet-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .rl100-why__bullet-text {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1A2224;
+  }
+
+  .rl100-why__closing {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px solid #D6DEDF;
+  }
+
+  @media (max-width: 600px) {
+    .rl100-why {
+      padding: 56px 20px;
+    }
+
+    .rl100-why__bullet-text {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RL100 Why 100 Days",
+  "tag": "section",
+  "class": "section-rl100-why",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H2)",
+      "default": "Why 100 Days"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Bullets"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Dot Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "text",
+      "id": "bullet_1",
+      "label": "Bullet 1",
+      "default": "Reduces short-term volatility"
+    },
+    {
+      "type": "text",
+      "id": "bullet_2",
+      "label": "Bullet 2",
+      "default": "Minimizes expectation bias"
+    },
+    {
+      "type": "text",
+      "id": "bullet_3",
+      "label": "Bullet 3",
+      "default": "Preserves interpretability"
+    },
+    {
+      "type": "header",
+      "content": "Closing Line"
+    },
+    {
+      "type": "text",
+      "id": "closing_line",
+      "label": "Closing Line",
+      "default": "Shorter intervals produce noise. Longer intervals dilute attribution."
+    },
+    {
+      "type": "color",
+      "id": "closing_color",
+      "label": "Closing Line Color",
+      "default": "#5C6B6E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RL100 Why 100 Days"
+    }
+  ]
+}
+{% endschema %}

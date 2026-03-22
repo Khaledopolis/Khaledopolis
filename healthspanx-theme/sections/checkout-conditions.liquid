@@ -1,0 +1,546 @@
+<section
+  class="checkout-conditions"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="checkout-conditions"
+>
+  <div class="checkout-conditions__inner">
+
+    {% if section.settings.heading_text != blank %}
+      <h1
+        class="checkout-conditions__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h1>
+    {% endif %}
+
+    <p class="checkout-conditions__intro">
+      Please review the conditions below before proceeding to payment.
+    </p>
+
+    <div class="checkout-conditions__blocks">
+
+      <!-- Block 1: Participation Summary -->
+      <div class="checkout-conditions__block">
+        <h3 class="checkout-conditions__block-title">{{ section.settings.condition_1_title }}</h3>
+        <p class="checkout-conditions__block-body">{{ section.settings.condition_1_body }}</p>
+      </div>
+
+      <!-- Block 2: Standardized Conditions -->
+      <div class="checkout-conditions__block">
+        <h3 class="checkout-conditions__block-title">{{ section.settings.condition_2_title }}</h3>
+        <p class="checkout-conditions__block-body">{{ section.settings.condition_2_body }}</p>
+      </div>
+
+      <!-- Block 3: Measurement Integrity -->
+      <div class="checkout-conditions__block">
+        <h3 class="checkout-conditions__block-title">{{ section.settings.condition_3_title }}</h3>
+        <p class="checkout-conditions__block-body">{{ section.settings.condition_3_body }}</p>
+      </div>
+
+      <!-- Block 4: Refund & Fairness -->
+      <div class="checkout-conditions__block">
+        <h3 class="checkout-conditions__block-title">{{ section.settings.condition_4_title }}</h3>
+        <p class="checkout-conditions__block-body">{{ section.settings.condition_4_body }}</p>
+      </div>
+
+      <!-- Block 5: Medical Boundary -->
+      <div class="checkout-conditions__block">
+        <h3 class="checkout-conditions__block-title">{{ section.settings.condition_5_title }}</h3>
+        <p class="checkout-conditions__block-body">{{ section.settings.condition_5_body }}</p>
+      </div>
+
+    </div>
+
+    <div class="checkout-conditions__checkboxes" role="group" aria-label="Required confirmations">
+
+      <label class="checkout-conditions__checkbox-label">
+        <input
+          class="checkout-conditions__checkbox"
+          type="checkbox"
+          data-required-checkbox
+          aria-required="true"
+        >
+        <span class="checkout-conditions__checkbox-custom" aria-hidden="true"></span>
+        <span class="checkout-conditions__checkbox-text">{{ section.settings.checkbox_1 }}</span>
+      </label>
+
+      <label class="checkout-conditions__checkbox-label">
+        <input
+          class="checkout-conditions__checkbox"
+          type="checkbox"
+          data-required-checkbox
+          aria-required="true"
+        >
+        <span class="checkout-conditions__checkbox-custom" aria-hidden="true"></span>
+        <span class="checkout-conditions__checkbox-text">{{ section.settings.checkbox_2 }}</span>
+      </label>
+
+      <label class="checkout-conditions__checkbox-label">
+        <input
+          class="checkout-conditions__checkbox"
+          type="checkbox"
+          data-required-checkbox
+          aria-required="true"
+        >
+        <span class="checkout-conditions__checkbox-custom" aria-hidden="true"></span>
+        <span class="checkout-conditions__checkbox-text">{{ section.settings.checkbox_3 }}</span>
+      </label>
+
+      <label class="checkout-conditions__checkbox-label">
+        <input
+          class="checkout-conditions__checkbox"
+          type="checkbox"
+          data-required-checkbox
+          aria-required="true"
+        >
+        <span class="checkout-conditions__checkbox-custom" aria-hidden="true"></span>
+        <span class="checkout-conditions__checkbox-text">{{ section.settings.checkbox_4 }}</span>
+      </label>
+
+    </div>
+
+    <div class="checkout-conditions__cta-wrap">
+      <button
+        class="checkout-conditions__cta-button"
+        style="background-color: {{ section.settings.cta_bg_color }}; color: {{ section.settings.cta_text_color }};"
+        disabled
+        aria-disabled="true"
+        data-proceed-button
+      >
+        {{ section.settings.cta_text }}
+      </button>
+
+      <p class="checkout-conditions__micro">
+        {{ section.settings.micro_text }}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .checkout-conditions {
+    padding: 80px 24px 96px;
+  }
+
+  .checkout-conditions__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .checkout-conditions__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 20px;
+  }
+
+  .checkout-conditions__intro {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #5C6B6E;
+    margin: 0 0 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .checkout-conditions__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .checkout-conditions__block {
+    padding: 28px 0;
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .checkout-conditions__block:first-child {
+    border-top: 1px solid #D6DEDF;
+  }
+
+  .checkout-conditions__block-title {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3D7A72;
+    margin: 0 0 10px;
+    line-height: 1;
+  }
+
+  .checkout-conditions__block-body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #1A2224;
+    margin: 0;
+  }
+
+  /* Checkboxes */
+  .checkout-conditions__checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 48px;
+    padding: 32px;
+    background-color: #EEF3F2;
+    border-radius: 4px;
+    border: 1px solid #D6DEDF;
+  }
+
+  .checkout-conditions__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .checkout-conditions__checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .checkout-conditions__checkbox-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #8A9DA0;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .checkout-conditions__checkbox-custom::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: 1.5px solid transparent;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translateY(-1px);
+    transition: border-color 0.15s ease;
+  }
+
+  .checkout-conditions__checkbox:checked + .checkout-conditions__checkbox-custom {
+    background-color: #3D7A72;
+    border-color: #3D7A72;
+  }
+
+  .checkout-conditions__checkbox:checked + .checkout-conditions__checkbox-custom::after {
+    border-color: #FFFFFF;
+  }
+
+  .checkout-conditions__checkbox:focus-visible + .checkout-conditions__checkbox-custom {
+    outline: 2px solid #3D7A72;
+    outline-offset: 2px;
+  }
+
+  .checkout-conditions__checkbox-text {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1A2224;
+    user-select: none;
+  }
+
+  /* CTA */
+  .checkout-conditions__cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .checkout-conditions__cta-button {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+    min-width: 240px;
+    text-align: center;
+  }
+
+  .checkout-conditions__cta-button:disabled,
+  .checkout-conditions__cta-button[aria-disabled="true"] {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .checkout-conditions__cta-button:not(:disabled):hover {
+    opacity: 0.88;
+  }
+
+  .checkout-conditions__cta-button:focus-visible {
+    outline: 2px solid #3D7A72;
+    outline-offset: 3px;
+  }
+
+  .checkout-conditions__micro {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #8A9DA0;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 600px) {
+    .checkout-conditions {
+      padding: 56px 20px 72px;
+    }
+
+    .checkout-conditions__checkboxes {
+      padding: 24px 20px;
+    }
+
+    .checkout-conditions__cta-button {
+      width: 100%;
+      padding: 16px 24px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var sectionEl = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!sectionEl) return;
+
+    var checkboxes = sectionEl.querySelectorAll('[data-required-checkbox]');
+    var proceedButton = sectionEl.querySelector('[data-proceed-button]');
+
+    if (!checkboxes.length || !proceedButton) return;
+
+    function updateButtonState() {
+      var allChecked = true;
+
+      checkboxes.forEach(function (checkbox) {
+        if (!checkbox.checked) {
+          allChecked = false;
+        }
+      });
+
+      if (allChecked) {
+        proceedButton.removeAttribute('disabled');
+        proceedButton.setAttribute('aria-disabled', 'false');
+      } else {
+        proceedButton.setAttribute('disabled', 'disabled');
+        proceedButton.setAttribute('aria-disabled', 'true');
+      }
+    }
+
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', updateButtonState);
+    });
+
+    // Initialize on load
+    updateButtonState();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Checkout Conditions",
+  "tag": "section",
+  "class": "section-checkout-conditions",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H1)",
+      "default": "Confirm Your Participation in RL100"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Condition Block 1 — Participation Summary"
+    },
+    {
+      "type": "text",
+      "id": "condition_1_title",
+      "label": "Block 1 Title",
+      "default": "Participation Summary"
+    },
+    {
+      "type": "textarea",
+      "id": "condition_1_body",
+      "label": "Block 1 Body",
+      "default": "RL100 is a 100-day structured measurement window. Includes standardized biological inputs, tracking checkpoints, outcome documentation. Does not guarantee outcomes."
+    },
+    {
+      "type": "header",
+      "content": "Condition Block 2 — Standardized Conditions"
+    },
+    {
+      "type": "text",
+      "id": "condition_2_title",
+      "label": "Block 2 Title",
+      "default": "Standardized Conditions"
+    },
+    {
+      "type": "textarea",
+      "id": "condition_2_body",
+      "label": "Block 2 Body",
+      "default": "Follow conditions daily. Avoid mid-protocol changes. Complete checkpoints. Stability preserves interpretability."
+    },
+    {
+      "type": "header",
+      "content": "Condition Block 3 — Measurement Integrity"
+    },
+    {
+      "type": "text",
+      "id": "condition_3_title",
+      "label": "Block 3 Title",
+      "default": "Measurement Integrity"
+    },
+    {
+      "type": "textarea",
+      "id": "condition_3_body",
+      "label": "Block 3 Body",
+      "default": "Depends on consistency, honest reporting, completion. Deviation may invalidate interpretability and affect refund eligibility."
+    },
+    {
+      "type": "header",
+      "content": "Condition Block 4 — Refund & Fairness"
+    },
+    {
+      "type": "text",
+      "id": "condition_4_title",
+      "label": "Block 4 Title",
+      "default": "Refund & Fairness"
+    },
+    {
+      "type": "textarea",
+      "id": "condition_4_body",
+      "label": "Block 4 Body",
+      "default": "Evaluated after full completion. Unremarkable change is valid data. Purpose is fairness, not incentive."
+    },
+    {
+      "type": "header",
+      "content": "Condition Block 5 — Medical Boundary"
+    },
+    {
+      "type": "text",
+      "id": "condition_5_title",
+      "label": "Block 5 Title",
+      "default": "Medical Boundary"
+    },
+    {
+      "type": "textarea",
+      "id": "condition_5_body",
+      "label": "Block 5 Body",
+      "default": "RL100 does not diagnose, treat, cure, or prevent disease. No medical relationship established."
+    },
+    {
+      "type": "header",
+      "content": "Checkboxes"
+    },
+    {
+      "type": "text",
+      "id": "checkbox_1",
+      "label": "Checkbox 1 Text",
+      "default": "I understand RL100 documents biological response and does not guarantee outcomes."
+    },
+    {
+      "type": "text",
+      "id": "checkbox_2",
+      "label": "Checkbox 2 Text",
+      "default": "I agree to follow standardized conditions for the full 100-day window."
+    },
+    {
+      "type": "text",
+      "id": "checkbox_3",
+      "label": "Checkbox 3 Text",
+      "default": "I understand deviation may affect interpretability and refund eligibility."
+    },
+    {
+      "type": "text",
+      "id": "checkbox_4",
+      "label": "Checkbox 4 Text",
+      "default": "I acknowledge RL100 is not a medical service."
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Proceed to Payment"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Button Background Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Button Text Color",
+      "default": "#EEF3F2"
+    },
+    {
+      "type": "header",
+      "content": "Micro Text"
+    },
+    {
+      "type": "text",
+      "id": "micro_text",
+      "label": "Micro Text (below button)",
+      "default": "By proceeding, you confirm your understanding of the conditions above."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Checkout Conditions"
+    }
+  ]
+}
+{% endschema %}

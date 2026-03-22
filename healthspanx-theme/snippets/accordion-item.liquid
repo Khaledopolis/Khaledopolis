@@ -1,0 +1,31 @@
+{% comment %}
+  Accordion Item Snippet
+  Usage: {% render 'accordion-item', accordion_title: 'Title', accordion_content: 'Content', accordion_id: 'unique-id' %}
+{% endcomment %}
+
+<div class="accordion-item" data-accordion-id="{{ accordion_id }}">
+  <button
+    class="accordion-header"
+    aria-expanded="false"
+    aria-controls="accordion-body-{{ accordion_id }}"
+    id="accordion-trigger-{{ accordion_id }}"
+  >
+    <span class="accordion-title">{{ accordion_title }}</span>
+    <span class="accordion-arrow" aria-hidden="true">
+      <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+  <div
+    class="accordion-body"
+    id="accordion-body-{{ accordion_id }}"
+    role="region"
+    aria-labelledby="accordion-trigger-{{ accordion_id }}"
+    hidden
+  >
+    <div class="accordion-body-inner">
+      {{ accordion_content }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>
+    {% if page_title == blank %}
+      {{ shop.name }}
+    {% else %}
+      {{ page_title }} — {{ shop.name }}
+    {% endif %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {% endif %}
+
+  {{ content_for_header }}
+
+  <!-- Google Fonts: Libre Baskerville + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  {{ 'application.css' | asset_url | stylesheet_tag }}
+
+  <!-- Dynamic CSS from Theme Settings -->
+  <style>
+    :root {
+      --color-ocean-depth: {{ settings.color_ocean_depth }};
+      --color-deep-slate: {{ settings.color_deep_slate }};
+      --color-dusk-teal: {{ settings.color_dusk_teal }};
+      --color-panel-border: {{ settings.color_panel_border }};
+      --color-pure-white: {{ settings.color_pure_white }};
+      --color-field-white: {{ settings.color_field_white }};
+      --color-teal-wash: {{ settings.color_teal_wash }};
+      --color-off-white: {{ settings.color_off_white }};
+      --color-mineral-teal: {{ settings.color_mineral_teal }};
+      --color-sage-green: {{ settings.color_sage_green }};
+      --color-teal-border: {{ settings.color_teal_border }};
+      --color-clay: {{ settings.color_clay }};
+      --color-clay-wash: {{ settings.color_clay_wash }};
+      --color-ink: {{ settings.color_ink }};
+      --color-muted: {{ settings.color_muted }};
+      --color-light-muted: {{ settings.color_light_muted }};
+      --color-parchment: {{ settings.color_parchment }};
+      --color-system-border: {{ settings.color_system_border }};
+      --color-warm-border: {{ settings.color_warm_border }};
+      --color-subtle-border: {{ settings.color_subtle_border }};
+      --font-h1-size: {{ settings.font_h1_size }}px;
+      --font-h2-size: {{ settings.font_h2_size }}px;
+      --font-eyebrow-size: {{ settings.font_eyebrow_size }}px;
+      --font-body-size: {{ settings.font_body_size }}px;
+      --font-data-size: {{ settings.font_data_size }}px;
+      --btn-radius: {{ settings.btn_border_radius }}px;
+    }
+  </style>
+
+  <script>document.documentElement.classList.remove('no-js');</script>
+</head>
+
+<body class="template--{{ template.name }}{% if template.suffix != blank %} template--{{ template.name }}-{{ template.suffix }}{% endif %}">
+  <a href="#main-content" class="skip-link visually-hidden">Skip to content</a>
+
+  {% section 'header' %}
+
+  <main id="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <!-- Product Modal Overlay -->
+  <div class="modal-overlay" data-modal-overlay aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="modal">
+      <button class="modal__close" data-modal-close aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 4L16 16M4 16L16 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="modal__badge">
+        <span class="badge" data-modal-category></span>
+      </div>
+      <h3 class="modal__title" data-modal-title></h3>
+      <p class="modal__body" data-modal-body></p>
+      <div class="modal__note">
+        Product access determined through Assessment only. No pricing displayed.
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
+    <div class="mobile-nav__header">
+      <span class="site-header__logo-text">HealthspanX</span>
+      <button class="modal__close" data-mobile-close aria-label="Close navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 4L16 16M4 16L16 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-nav__links">
+      <a class="mobile-nav__link" href="/">Home</a>
+      <a class="mobile-nav__link" href="/pages/assessment">Assessment</a>
+      <a class="mobile-nav__link" href="/pages/rl100">RL100</a>
+      <a class="mobile-nav__link" href="/pages/privacy-policy">Privacy Policy</a>
+    </div>
+    <div class="mobile-nav__cta">
+      <a class="btn btn--primary" href="/pages/assessment" style="width:100%; display:block; text-align:center;">Begin the Assessment</a>
+    </div>
+  </nav>
+
+  <!-- Theme JS -->
+  <script src="{{ 'application.js' | asset_url }}" defer></script>
+
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .skip-link:focus {
+      position: fixed; top: 0; left: 0;
+      width: auto; height: auto;
+      padding: 12px 20px;
+      background: var(--color-mineral-teal);
+      color: #fff;
+      clip: auto;
+      z-index: 9999;
+    }
+  </style>
+</body>
+</html>

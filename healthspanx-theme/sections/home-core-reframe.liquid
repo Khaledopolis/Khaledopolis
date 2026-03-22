@@ -1,0 +1,330 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #home-core-reframe-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.section_padding_top }}px 40px {{ section.settings.section_padding_bottom }}px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #home-core-reframe-{{ section.id }} .reframe-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  #home-core-reframe-{{ section.id }} .reframe-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #home-core-reframe-{{ section.id }} h2 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px 0;
+  }
+
+  #home-core-reframe-{{ section.id }} .reframe-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: {{ section.settings.body_color }};
+    line-height: 1.75;
+    margin: 0 0 32px 0;
+  }
+
+  #home-core-reframe-{{ section.id }} .reframe-brand-statement {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: {{ section.settings.brand_statement_color }};
+    line-height: 1.4;
+    margin: 0;
+    padding-left: 20px;
+    border-left: 3px solid {{ section.settings.brand_statement_color }};
+    opacity: 0.9;
+  }
+
+  {% if section.settings.show_visual %}
+  #home-core-reframe-{{ section.id }} .reframe-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    position: relative;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-diagram {
+    width: 100%;
+    max-width: 380px;
+    height: 320px;
+    position: relative;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-axis {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: #D6DEDF;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-axis-v {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    width: 1px;
+    height: 240px;
+    background: #D6DEDF;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar {
+    position: absolute;
+    bottom: 41px;
+    width: 28px;
+    border-radius: 2px 2px 0 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(3) {
+    left: 44px;
+    height: 60px;
+    background: #C8D4D0;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(4) {
+    left: 84px;
+    height: 110px;
+    background: #8A9DA0;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(5) {
+    left: 124px;
+    height: 80px;
+    background: #C4896A;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(6) {
+    left: 164px;
+    height: 180px;
+    background: #3D7A72;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(7) {
+    left: 204px;
+    height: 130px;
+    background: #8A9DA0;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(8) {
+    left: 244px;
+    height: 220px;
+    background: #3D7A72;
+    opacity: 0.7;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-bar:nth-child(9) {
+    left: 284px;
+    height: 95px;
+    background: #C4896A;
+    opacity: 0.6;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-label {
+    position: absolute;
+    bottom: 8px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #8A9DA0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  #home-core-reframe-{{ section.id }} .signal-caption {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #8A9DA0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  {% else %}
+  #home-core-reframe-{{ section.id }} .reframe-visual {
+    display: none;
+  }
+  {% endif %}
+
+  @media (max-width: 900px) {
+    #home-core-reframe-{{ section.id }} {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    #home-core-reframe-{{ section.id }} .reframe-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    #home-core-reframe-{{ section.id }} .reframe-visual {
+      order: -1;
+      min-height: 220px;
+    }
+
+    #home-core-reframe-{{ section.id }} .signal-diagram {
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #home-core-reframe-{{ section.id }} {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+</style>
+
+<section id="home-core-reframe-{{ section.id }}">
+  <div class="reframe-inner">
+    <div class="reframe-copy">
+      <h2>{{ section.settings.heading_text }}</h2>
+      <p class="reframe-body">{{ section.settings.body_text }}</p>
+      <p class="reframe-brand-statement">{{ section.settings.brand_statement }}</p>
+    </div>
+
+    {% if section.settings.show_visual %}
+    <div class="reframe-visual" aria-hidden="true">
+      <div class="signal-diagram">
+        <span class="signal-caption">Signal Breakdown</span>
+        <div class="signal-axis-v"></div>
+        <div class="signal-axis"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-bar"></div>
+        <div class="signal-label">
+          <span>Baseline</span>
+          <span>Observed</span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home — Core Reframe",
+  "tag": "section",
+  "class": "home-core-reframe-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 96
+    },
+    {
+      "type": "checkbox",
+      "id": "show_visual",
+      "label": "Show Abstract Signal Visual",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Most beauty and longevity systems fail for the same reason."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Body"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "They apply products before measuring response. When outcomes don't translate, the burden falls on the individual — not the system."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#5C6B6E"
+    },
+    {
+      "type": "header",
+      "content": "Brand Statement"
+    },
+    {
+      "type": "text",
+      "id": "brand_statement",
+      "label": "Brand Statement (italic)",
+      "default": "Radiant Life™ was built to reverse that order."
+    },
+    {
+      "type": "color",
+      "id": "brand_statement_color",
+      "label": "Brand Statement Color",
+      "default": "#C4896A"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home — Core Reframe"
+    }
+  ]
+}
+{% endschema %}

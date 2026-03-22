@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "governance-page": {
+      "type": "governance-page",
+      "settings": {
+        "bg_color": "#F7F6F3",
+        "heading_color": "#1A2224",
+        "eyebrow": "Legal",
+        "page_title": "Refund Policy",
+        "page_intro": "This policy outlines the conditions under which refunds may be issued for HealthspanX products and the Radiant Life™ program.",
+        "show_last_updated": true,
+        "last_updated_date": ""
+      }
+    }
+  },
+  "order": [
+    "governance-page"
+  ]
+}

@@ -1,0 +1,185 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #assessment-before-begin-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 80px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 32px 0;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.65;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-bullets li::before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: {{ section.settings.bullet_color }};
+    margin-top: 8px;
+  }
+
+  #assessment-before-begin-{{ section.id }} .before-begin-disqualifier {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: {{ section.settings.disqualifier_color }};
+    line-height: 1.65;
+    margin: 0;
+    padding: 16px 20px;
+    border: 1px solid #D6DEDF;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    #assessment-before-begin-{{ section.id }} {
+      padding: 64px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #assessment-before-begin-{{ section.id }} {
+      padding: 56px 20px;
+    }
+
+    #assessment-before-begin-{{ section.id }} .before-begin-bullets li {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<section id="assessment-before-begin-{{ section.id }}">
+  <div class="before-begin-inner">
+    <h2 class="before-begin-heading">{{ section.settings.heading_text }}</h2>
+    <ul class="before-begin-bullets">
+      <li>{{ section.settings.req_1 }}</li>
+      <li>{{ section.settings.req_2 }}</li>
+      <li>{{ section.settings.req_3 }}</li>
+    </ul>
+    {% if section.settings.disqualifier_text != blank %}
+      <p class="before-begin-disqualifier">{{ section.settings.disqualifier_text }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Assessment — Before You Begin",
+  "tag": "section",
+  "class": "assessment-before-begin-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#EAF3F1"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Before You Begin"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Requirements"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Dot Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "text",
+      "id": "req_1",
+      "label": "Requirement 1",
+      "default": "Willingness to follow standardized conditions"
+    },
+    {
+      "type": "text",
+      "id": "req_2",
+      "label": "Requirement 2",
+      "default": "Patience with biological timelines"
+    },
+    {
+      "type": "text",
+      "id": "req_3",
+      "label": "Requirement 3",
+      "default": "Respect for measurement integrity"
+    },
+    {
+      "type": "header",
+      "content": "Disqualifier"
+    },
+    {
+      "type": "textarea",
+      "id": "disqualifier_text",
+      "label": "Disqualifier Text",
+      "default": "If you are seeking rapid transformation, guaranteed outcomes, or immediate product access, this system may not be appropriate."
+    },
+    {
+      "type": "color",
+      "id": "disqualifier_color",
+      "label": "Disqualifier Text Color",
+      "default": "#5C6B6E"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Assessment — Before You Begin"
+    }
+  ]
+}
+{% endschema %}

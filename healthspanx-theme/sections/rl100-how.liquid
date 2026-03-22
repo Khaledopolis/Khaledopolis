@@ -1,0 +1,354 @@
+{% assign layout = section.settings.layout %}
+
+<section
+  class="rl100-how rl100-how--{{ layout }}"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="rl100-how"
+>
+  <div class="rl100-how__inner">
+
+    {% if section.settings.heading_text != blank %}
+      <h2
+        class="rl100-how__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h2>
+    {% endif %}
+
+    <div class="rl100-how__stages">
+
+      <!-- Stage 1 -->
+      <div class="rl100-how__stage">
+        <div class="rl100-how__stage-inner">
+          {% if section.settings.stage1_label != blank %}
+            <p
+              class="rl100-how__stage-label"
+              style="color: {{ section.settings.stage_color }};"
+            >
+              {{ section.settings.stage1_label }}
+            </p>
+          {% endif %}
+          {% if section.settings.stage1_body != blank %}
+            <p class="rl100-how__stage-body">{{ section.settings.stage1_body }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="rl100-how__divider" aria-hidden="true"></div>
+
+      <!-- Stage 2 -->
+      <div class="rl100-how__stage">
+        <div class="rl100-how__stage-inner">
+          {% if section.settings.stage2_label != blank %}
+            <p
+              class="rl100-how__stage-label"
+              style="color: {{ section.settings.stage_color }};"
+            >
+              {{ section.settings.stage2_label }}
+            </p>
+          {% endif %}
+          {% if section.settings.stage2_body != blank %}
+            <p class="rl100-how__stage-body">{{ section.settings.stage2_body }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="rl100-how__divider" aria-hidden="true"></div>
+
+      <!-- Stage 3 -->
+      <div class="rl100-how__stage">
+        <div class="rl100-how__stage-inner">
+          {% if section.settings.stage3_label != blank %}
+            <p
+              class="rl100-how__stage-label"
+              style="color: {{ section.settings.stage_color }};"
+            >
+              {{ section.settings.stage3_label }}
+            </p>
+          {% endif %}
+          {% if section.settings.stage3_body != blank %}
+            <p class="rl100-how__stage-body">{{ section.settings.stage3_body }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+    {% if section.settings.closing_line_1 != blank or section.settings.closing_line_2 != blank %}
+      <div class="rl100-how__closing">
+        {% if section.settings.closing_line_1 != blank %}
+          <p class="rl100-how__closing-line">{{ section.settings.closing_line_1 }}</p>
+        {% endif %}
+        {% if section.settings.closing_line_2 != blank %}
+          <p class="rl100-how__closing-line">{{ section.settings.closing_line_2 }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .rl100-how {
+    padding: 80px 24px;
+  }
+
+  .rl100-how__inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .rl100-how__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 48px;
+  }
+
+  /* Columns layout */
+  .rl100-how--columns .rl100-how__stages {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .rl100-how--columns .rl100-how__stage {
+    flex: 1;
+    padding: 0 32px;
+  }
+
+  .rl100-how--columns .rl100-how__stage:first-child {
+    padding-left: 0;
+  }
+
+  .rl100-how--columns .rl100-how__stage:last-child {
+    padding-right: 0;
+  }
+
+  .rl100-how--columns .rl100-how__divider {
+    width: 1px;
+    background-color: #D6DEDF;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  /* Vertical layout */
+  .rl100-how--vertical .rl100-how__stages {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .rl100-how--vertical .rl100-how__stage {
+    padding: 28px 0;
+  }
+
+  .rl100-how--vertical .rl100-how__divider {
+    height: 1px;
+    background-color: #D6DEDF;
+  }
+
+  /* Stage content */
+  .rl100-how__stage-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rl100-how__stage-label {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .rl100-how__stage-body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #1A2224;
+    margin: 0;
+  }
+
+  /* Closing */
+  .rl100-how__closing {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #D6DEDF;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rl100-how__closing-line {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #5C6B6E;
+    margin: 0;
+  }
+
+  /* Responsive: columns become vertical on mobile */
+  @media (max-width: 680px) {
+    .rl100-how {
+      padding: 56px 20px;
+    }
+
+    .rl100-how--columns .rl100-how__stages {
+      flex-direction: column;
+    }
+
+    .rl100-how--columns .rl100-how__divider {
+      width: auto;
+      height: 1px;
+    }
+
+    .rl100-how--columns .rl100-how__stage {
+      padding: 28px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RL100 How Measurement Works",
+  "tag": "section",
+  "class": "section-rl100-how",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H2)",
+      "default": "How Measurement Works"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Stage Labels"
+    },
+    {
+      "type": "color",
+      "id": "stage_color",
+      "label": "Stage Label Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "header",
+      "content": "Stage 1 — Baseline"
+    },
+    {
+      "type": "text",
+      "id": "stage1_label",
+      "label": "Stage 1 Label",
+      "default": "Baseline"
+    },
+    {
+      "type": "text",
+      "id": "stage1_body",
+      "label": "Stage 1 Body",
+      "default": "Context established."
+    },
+    {
+      "type": "header",
+      "content": "Stage 2 — Day 50"
+    },
+    {
+      "type": "text",
+      "id": "stage2_label",
+      "label": "Stage 2 Label",
+      "default": "Day 50"
+    },
+    {
+      "type": "text",
+      "id": "stage2_body",
+      "label": "Stage 2 Body",
+      "default": "Calibration check."
+    },
+    {
+      "type": "header",
+      "content": "Stage 3 — Day 100"
+    },
+    {
+      "type": "text",
+      "id": "stage3_label",
+      "label": "Stage 3 Label",
+      "default": "Day 100"
+    },
+    {
+      "type": "text",
+      "id": "stage3_body",
+      "label": "Stage 3 Body",
+      "default": "Descriptive outcome."
+    },
+    {
+      "type": "header",
+      "content": "Closing Lines"
+    },
+    {
+      "type": "text",
+      "id": "closing_line_1",
+      "label": "Closing Line 1",
+      "default": "Variables remain stable."
+    },
+    {
+      "type": "text",
+      "id": "closing_line_2",
+      "label": "Closing Line 2",
+      "default": "Fewer variables. Clearer conclusions."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Stage Layout",
+      "options": [
+        {
+          "value": "columns",
+          "label": "Three Columns"
+        },
+        {
+          "value": "vertical",
+          "label": "Vertical Steps"
+        }
+      ],
+      "default": "columns"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RL100 How Measurement Works"
+    }
+  ]
+}
+{% endschema %}

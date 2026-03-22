@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "home-hero": {
+      "type": "home-hero",
+      "settings": {}
+    },
+    "home-core-reframe": {
+      "type": "home-core-reframe",
+      "settings": {}
+    },
+    "home-what-rl-is": {
+      "type": "home-what-rl-is",
+      "settings": {}
+    },
+    "home-system-architecture": {
+      "type": "home-system-architecture",
+      "settings": {}
+    },
+    "home-rl100-narrative": {
+      "type": "home-rl100-narrative",
+      "settings": {}
+    },
+    "home-biological-toolset": {
+      "type": "home-biological-toolset",
+      "settings": {},
+      "blocks": {}
+    },
+    "home-deliberate": {
+      "type": "home-deliberate",
+      "settings": {}
+    },
+    "home-final-cta": {
+      "type": "home-final-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "home-hero",
+    "home-core-reframe",
+    "home-what-rl-is",
+    "home-system-architecture",
+    "home-rl100-narrative",
+    "home-biological-toolset",
+    "home-deliberate",
+    "home-final-cta"
+  ]
+}

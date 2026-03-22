@@ -1,0 +1,209 @@
+<section
+  class="enroll-invitation"
+  style="background-color: {{ section.settings.bg_color }};"
+  data-section-id="{{ section.id }}"
+  data-section-type="enroll-invitation"
+>
+  <div class="enroll-invitation__inner">
+
+    {% if section.settings.eyebrow_text != blank %}
+      <p
+        class="enroll-invitation__eyebrow"
+        style="color: {{ section.settings.eyebrow_color }};"
+      >
+        {{ section.settings.eyebrow_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading_text != blank %}
+      <h1
+        class="enroll-invitation__heading"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading_text }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.sub_text != blank %}
+      <p class="enroll-invitation__sub">
+        {{ section.settings.sub_text }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.body_line_1 != blank or section.settings.body_line_2 != blank %}
+      <div class="enroll-invitation__body">
+        {% if section.settings.body_line_1 != blank %}
+          <p
+            class="enroll-invitation__body-line"
+            style="color: {{ section.settings.body_color }};"
+          >
+            {{ section.settings.body_line_1 }}
+          </p>
+        {% endif %}
+        {% if section.settings.body_line_2 != blank %}
+          <p
+            class="enroll-invitation__body-line"
+            style="color: {{ section.settings.body_color }};"
+          >
+            {{ section.settings.body_line_2 }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .enroll-invitation {
+    padding: 96px 24px 72px;
+  }
+
+  .enroll-invitation__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .enroll-invitation__eyebrow {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    line-height: 1;
+  }
+
+  .enroll-invitation__heading {
+    font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin: 0 0 28px;
+  }
+
+  .enroll-invitation__sub {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #5C6B6E;
+    margin: 0 0 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .enroll-invitation__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .enroll-invitation__body-line {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .enroll-invitation {
+      padding: 64px 20px 56px;
+    }
+
+    .enroll-invitation__body-line {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Enroll Invitation",
+  "tag": "section",
+  "class": "section-enroll-invitation",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F7F6F3"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "ENROLLMENT"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading (H1)",
+      "default": "Participate in RL100"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Sub Text"
+    },
+    {
+      "type": "text",
+      "id": "sub_text",
+      "label": "Sub Text",
+      "default": "Enrollment in the Radiant Life\u2122 100-Day Measurement Window."
+    },
+    {
+      "type": "header",
+      "content": "Body Lines"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "text",
+      "id": "body_line_1",
+      "label": "Body Line 1",
+      "default": "Based on your assessment, participation may be appropriate."
+    },
+    {
+      "type": "text",
+      "id": "body_line_2",
+      "label": "Body Line 2",
+      "default": "Enrollment is voluntary \u2014 a commitment to structured measurement, not a purchase of outcomes."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Enroll Invitation"
+    }
+  ]
+}
+{% endschema %}

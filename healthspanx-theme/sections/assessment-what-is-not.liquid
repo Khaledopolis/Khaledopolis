@@ -1,0 +1,160 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  #assessment-what-is-not-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 80px 40px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #assessment-what-is-not-{{ section.id }} .what-is-not-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  #assessment-what-is-not-{{ section.id }} .what-is-not-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 36px 0;
+  }
+
+  #assessment-what-is-not-{{ section.id }} .what-is-not-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #assessment-what-is-not-{{ section.id }} .what-is-not-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #5C6B6E;
+    line-height: 1.65;
+  }
+
+  #assessment-what-is-not-{{ section.id }} .what-is-not-bullets li::before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: {{ section.settings.bullet_color }};
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    #assessment-what-is-not-{{ section.id }} {
+      padding: 64px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #assessment-what-is-not-{{ section.id }} {
+      padding: 56px 20px;
+    }
+
+    #assessment-what-is-not-{{ section.id }} .what-is-not-bullets li {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<section id="assessment-what-is-not-{{ section.id }}">
+  <div class="what-is-not-inner">
+    <h2 class="what-is-not-heading">{{ section.settings.heading_text }}</h2>
+    <ul class="what-is-not-bullets">
+      <li>{{ section.settings.bullet_1 }}</li>
+      <li>{{ section.settings.bullet_2 }}</li>
+      <li>{{ section.settings.bullet_3 }}</li>
+      <li>{{ section.settings.bullet_4 }}</li>
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Assessment — What This Is Not",
+  "tag": "section",
+  "class": "assessment-what-is-not-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#EEF3F2"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "What This Assessment Is Not"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "header",
+      "content": "Bullets"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Dot Color",
+      "default": "#3D7A72"
+    },
+    {
+      "type": "text",
+      "id": "bullet_1",
+      "label": "Bullet 1",
+      "default": "Does not diagnose medical conditions"
+    },
+    {
+      "type": "text",
+      "id": "bullet_2",
+      "label": "Bullet 2",
+      "default": "Does not predict personal outcomes"
+    },
+    {
+      "type": "text",
+      "id": "bullet_3",
+      "label": "Bullet 3",
+      "default": "Does not provide treatment recommendations"
+    },
+    {
+      "type": "text",
+      "id": "bullet_4",
+      "label": "Bullet 4",
+      "default": "Does not replace medical consultation"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Assessment — What This Is Not"
+    }
+  ]
+}
+{% endschema %}

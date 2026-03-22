@@ -1,0 +1,418 @@
+{% assign bg = section.settings.bg_color | default: '#E8D4C8' %}
+{% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
+{% assign badge_bg = section.settings.badge_bg | default: '#7A9E8A' %}
+{% assign badge_text = section.settings.badge_text_color | default: '#FFFFFF' %}
+{% assign clay_accent = section.settings.clay_accent_color | default: '#C4896A' %}
+
+<style>
+  .hsx-day100 {
+    background-color: {{ bg }};
+    padding: 64px 24px 80px;
+  }
+
+  .hsx-day100__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hsx-day100__heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.02em;
+    margin: 0 0 12px 0;
+  }
+
+  .hsx-day100__sub {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 40px 0;
+    max-width: 560px;
+  }
+
+  .hsx-day100__divider {
+    border: none;
+    border-top: 1px solid {{ clay_accent }};
+    opacity: 0.3;
+    margin: 32px 0;
+  }
+
+  /* Cards */
+  .hsx-day100__card {
+    background-color: #FFFFFF;
+    border: 1px solid #D6DEDF;
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+  }
+
+  .hsx-day100__card-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5C6B6E;
+    margin: 0 0 16px 0;
+  }
+
+  .hsx-day100__card-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5C6B6E;
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-day100__card-body:last-child {
+    margin-bottom: 0;
+  }
+
+  /* CVI comparison row */
+  .hsx-day100__cvi-row {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .hsx-day100__cvi-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hsx-day100__cvi-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A9DA0;
+  }
+
+  .hsx-day100__cvi-value {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1A2224;
+    letter-spacing: -0.02em;
+  }
+
+  .hsx-day100__delta-value {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: {{ clay_accent }};
+    letter-spacing: -0.02em;
+  }
+
+  .hsx-day100__no-label-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Placeholder */
+  .hsx-day100__placeholder {
+    background-color: #EEF3F2;
+    border: 1px dashed #D6DEDF;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+  }
+
+  .hsx-day100__placeholder p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Photo card */
+  .hsx-day100__photo-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    margin: 0 0 14px 0;
+  }
+
+  /* Interpretation card */
+  .hsx-day100__interpretation {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5C6B6E;
+    margin: 0;
+  }
+
+  /* Badge card */
+  .hsx-day100__badge-card {
+    background-color: {{ badge_bg }};
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 24px;
+  }
+
+  .hsx-day100__badge-heading {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ badge_text }};
+    letter-spacing: -0.01em;
+    margin: 0 0 12px 0;
+  }
+
+  .hsx-day100__badge-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: {{ badge_text }};
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  /* Continuation card */
+  .hsx-day100__continuation-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5C6B6E;
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-day100__continuation-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-day100__options-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .hsx-day100__option-pill {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1A2224;
+    background-color: #EEF3F2;
+    border: 1px solid #D6DEDF;
+    border-radius: 4px;
+    padding: 8px 14px;
+    text-decoration: none;
+    transition: background-color 0.18s ease;
+    cursor: pointer;
+  }
+
+  .hsx-day100__option-pill:hover {
+    background-color: #EAF3F1;
+  }
+
+  .hsx-day100__no-urgency {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #8A9DA0;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Share section */
+  .hsx-day100__share-note {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    color: #5C6B6E;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .hsx-day100__heading {
+      font-size: 26px;
+    }
+
+    .hsx-day100__card {
+      padding: 20px 18px;
+    }
+
+    .hsx-day100__badge-card {
+      padding: 20px 18px;
+    }
+
+    .hsx-day100__cvi-value,
+    .hsx-day100__delta-value {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<section class="hsx-day100" id="day100-graduation">
+  <div class="hsx-day100__inner">
+
+    <!-- Heading -->
+    <h1 class="hsx-day100__heading">Day 100 Completion</h1>
+    <p class="hsx-day100__sub">
+      Your structured 100-day participation window has concluded. This page records what occurred under stability.
+    </p>
+
+    <hr class="hsx-day100__divider" />
+
+    <!-- Structured comparison -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__card-heading">Structured Comparison</h3>
+
+      <div class="hsx-day100__cvi-row">
+        <div class="hsx-day100__cvi-item">
+          <span class="hsx-day100__cvi-label">Baseline CVI</span>
+          <span class="hsx-day100__cvi-value">XX</span>
+        </div>
+        <div class="hsx-day100__cvi-item">
+          <span class="hsx-day100__cvi-label">Day 100 CVI</span>
+          <span class="hsx-day100__cvi-value">XX</span>
+        </div>
+        <div class="hsx-day100__cvi-item">
+          <span class="hsx-day100__cvi-label">Dermal Delta&trade;</span>
+          <span class="hsx-day100__delta-value">XX</span>
+        </div>
+      </div>
+
+      <p class="hsx-day100__no-label-note">
+        No arrows, colour coding, or improvement labels.
+      </p>
+    </div>
+
+    <!-- Pillar breakdown -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__card-heading">Pillar Breakdown</h3>
+      <div class="hsx-day100__placeholder">
+        <p>Developer placeholder — Pillar comparison table (4 pillars, Day 0 vs Day 100, no directional labels).</p>
+      </div>
+    </div>
+
+    <!-- Photo comparison -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__card-heading">Photo Comparison</h3>
+      <p class="hsx-day100__photo-note">
+        Side-by-side comparison. No editing, filters, or enhancement.
+      </p>
+      <div class="hsx-day100__placeholder">
+        <p>Developer placeholder — Day 0 / Day 100 side-by-side photo display (unedited).</p>
+      </div>
+    </div>
+
+    <!-- Interpretation -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__card-heading">Interpretation</h3>
+      <p class="hsx-day100__interpretation">
+        Neither outcome labelled success or failure.
+      </p>
+    </div>
+
+    <!-- Graduate badge -->
+    <div class="hsx-day100__badge-card">
+      <h3 class="hsx-day100__badge-heading">Radiant Life Graduate</h3>
+      <p class="hsx-day100__badge-body">
+        Reflects full participation, exposure stability, measurement completion. Not cosmetic performance.
+      </p>
+    </div>
+
+    <!-- Continuation options -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__continuation-heading">Next Steps</h3>
+      <p class="hsx-day100__continuation-note">
+        Continuation is optional and non-urgent.
+      </p>
+
+      <div class="hsx-day100__options-row">
+        {%- if section.settings.cta_continuation_url != blank -%}
+          <a href="{{ section.settings.cta_continuation_url }}" class="hsx-day100__option-pill">Maintain</a>
+          <a href="{{ section.settings.cta_continuation_url }}" class="hsx-day100__option-pill">New Window</a>
+          <a href="{{ section.settings.cta_continuation_url }}" class="hsx-day100__option-pill">Pause</a>
+          <a href="{{ section.settings.cta_continuation_url }}" class="hsx-day100__option-pill">Phase 2</a>
+        {%- else -%}
+          <span class="hsx-day100__option-pill">Maintain</span>
+          <span class="hsx-day100__option-pill">New Window</span>
+          <span class="hsx-day100__option-pill">Pause</span>
+          <span class="hsx-day100__option-pill">Phase 2</span>
+        {%- endif -%}
+      </div>
+
+      <p class="hsx-day100__no-urgency">No decision required today.</p>
+    </div>
+
+    <!-- Share section -->
+    <div class="hsx-day100__card">
+      <h3 class="hsx-day100__continuation-heading">Share</h3>
+      <p class="hsx-day100__share-note">
+        Optional. Shares documentation, not performance.
+      </p>
+      <div class="hsx-day100__placeholder">
+        <p>Developer placeholder — Optional share interface for documentation export.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Day 100 Graduation",
+  "tag": "div",
+  "class": "hsx-day100-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#E8D4C8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1A2224"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge background color",
+      "default": "#7A9E8A"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "clay_accent_color",
+      "label": "Clay accent color (Dermal Delta)",
+      "default": "#C4896A"
+    },
+    {
+      "type": "url",
+      "id": "cta_continuation_url",
+      "label": "Continuation options URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Day 100 Graduation"
+    }
+  ]
+}
+{% endschema %}
