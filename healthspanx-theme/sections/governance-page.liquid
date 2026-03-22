@@ -1,7 +1,5 @@
 {% assign bg = section.settings.bg_color | default: '#F7F6F3' %}
 {% assign heading_col = section.settings.heading_color | default: '#1A2224' %}
-{% assign page_title_override = section.settings.page_title | default: '' %}
-{% assign page_intro = section.settings.page_intro | default: '' %}
 
 <style>
   .hsx-governance {
@@ -27,27 +25,148 @@
 
   .hsx-governance__heading {
     font-family: 'Libre Baskerville', Georgia, serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: {{ heading_col }};
     letter-spacing: -0.02em;
-    margin: 0 0 16px 0;
+    margin: 0 0 28px 0;
+    line-height: 1.15;
   }
 
-  .hsx-governance__intro {
+  .hsx-governance__layer1 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 15px;
-    line-height: 1.65;
-    color: #5C6B6E;
-    margin: 0 0 36px 0;
+    line-height: 1.8;
+    color: #3D4E52;
+  }
+
+  .hsx-governance__layer1 p {
+    margin: 0 0 18px 0;
+  }
+
+  .hsx-governance__layer1 p:last-child {
+    margin-bottom: 0;
   }
 
   .hsx-governance__divider {
     border: none;
     border-top: 1px solid #D6DEDF;
-    margin: 32px 0;
+    margin: 36px 0;
   }
 
+  /* Accordion styles */
+  .hsx-gov-accordions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hsx-gov-accordion {
+    border-bottom: 1px solid #D6DEDF;
+  }
+
+  .hsx-gov-accordion:first-child {
+    border-top: 1px solid #D6DEDF;
+  }
+
+  .hsx-gov-accordion__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: {{ heading_col }};
+    letter-spacing: -0.005em;
+    text-align: left;
+    transition: color 0.2s ease;
+    gap: 16px;
+  }
+
+  .hsx-gov-accordion__trigger:hover {
+    color: #3D7A72;
+  }
+
+  .hsx-gov-accordion__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+  }
+
+  .hsx-gov-accordion__icon::before,
+  .hsx-gov-accordion__icon::after {
+    content: '';
+    position: absolute;
+    background-color: #8A9DA0;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .hsx-gov-accordion__icon::before {
+    width: 12px;
+    height: 1.5px;
+    top: 8px;
+    left: 3px;
+  }
+
+  .hsx-gov-accordion__icon::after {
+    width: 1.5px;
+    height: 12px;
+    top: 3px;
+    left: 8px;
+  }
+
+  .hsx-gov-accordion__trigger[aria-expanded="true"] .hsx-gov-accordion__icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  .hsx-gov-accordion__trigger[aria-expanded="true"] .hsx-gov-accordion__icon::before {
+    background-color: #3D7A72;
+  }
+
+  .hsx-gov-accordion__panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+
+  .hsx-gov-accordion__panel.is-open {
+    max-height: 1000px;
+  }
+
+  .hsx-gov-accordion__panel-inner {
+    padding: 0 0 24px 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #5C6B6E;
+  }
+
+  .hsx-gov-accordion__panel-inner p {
+    margin: 0 0 14px 0;
+  }
+
+  .hsx-gov-accordion__panel-inner p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hsx-gov-accordion__panel-inner ul,
+  .hsx-gov-accordion__panel-inner ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+
+  .hsx-gov-accordion__panel-inner li {
+    margin-bottom: 6px;
+  }
+
+  /* Fallback body (page.content) */
   .hsx-governance__body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 14px;
@@ -97,23 +216,9 @@
     margin-bottom: 6px;
   }
 
-  .hsx-governance__body hr {
-    border: none;
-    border-top: 1px solid #D6DEDF;
-    margin: 28px 0;
-  }
-
-  .hsx-governance__last-updated {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 12px;
-    color: #8A9DA0;
-    margin-top: 48px;
-    font-style: italic;
-  }
-
   @media (max-width: 600px) {
     .hsx-governance__heading {
-      font-size: 24px;
+      font-size: 26px;
     }
   }
 </style>
@@ -126,31 +231,72 @@
     {%- endif -%}
 
     <h1 class="hsx-governance__heading">
-      {%- if page_title_override != blank -%}
-        {{ page_title_override }}
+      {%- if section.settings.page_title != blank -%}
+        {{ section.settings.page_title }}
       {%- elsif page.title != blank -%}
         {{ page.title }}
       {%- endif -%}
     </h1>
 
-    {%- if page_intro != blank -%}
-      <p class="hsx-governance__intro">{{ page_intro }}</p>
+    {%- if section.settings.layer1_body != blank -%}
+      <div class="hsx-governance__layer1">{{ section.settings.layer1_body }}</div>
+    {%- elsif page.content != blank -%}
+      <div class="hsx-governance__body">{{ page.content }}</div>
     {%- endif -%}
 
-    <hr class="hsx-governance__divider" />
-
-    <div class="hsx-governance__body">
-      {{ page.content }}
-    </div>
-
-    {%- if section.settings.show_last_updated -%}
-      <p class="hsx-governance__last-updated">
-        Last updated: {{ section.settings.last_updated_date | default: 'See document header' }}
-      </p>
+    {%- if section.blocks.size > 0 -%}
+      <hr class="hsx-governance__divider" />
+      <div class="hsx-gov-accordions">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' -%}
+            <div class="hsx-gov-accordion" {{ block.shopify_attributes }}>
+              <button
+                class="hsx-gov-accordion__trigger"
+                aria-expanded="false"
+                aria-controls="acc-panel-{{ block.id }}"
+                id="acc-btn-{{ block.id }}"
+              >
+                <span>{{ block.settings.title }}</span>
+                <span class="hsx-gov-accordion__icon" aria-hidden="true"></span>
+              </button>
+              <div
+                class="hsx-gov-accordion__panel"
+                id="acc-panel-{{ block.id }}"
+                role="region"
+                aria-labelledby="acc-btn-{{ block.id }}"
+              >
+                <div class="hsx-gov-accordion__panel-inner">
+                  {{ block.settings.body }}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     {%- endif -%}
 
   </div>
 </section>
+
+<script>
+  (function() {
+    var accordions = document.querySelectorAll('.hsx-gov-accordion__trigger');
+    accordions.forEach(function(trigger) {
+      var panelId = trigger.getAttribute('aria-controls');
+      var panel = document.getElementById(panelId);
+      if (!panel) return;
+      trigger.addEventListener('click', function() {
+        var expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+        if (!expanded) {
+          panel.classList.add('is-open');
+        } else {
+          panel.classList.remove('is-open');
+        }
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -174,31 +320,37 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow text",
-      "info": "Small uppercase label above the heading (e.g. 'Legal', 'Policy')."
+      "info": "Small uppercase label above the heading (e.g. 'Governance', 'Legal')."
     },
     {
       "type": "text",
       "id": "page_title",
-      "label": "Override page title",
+      "label": "Page title",
       "info": "Leave blank to use the Shopify page title."
     },
     {
-      "type": "textarea",
-      "id": "page_intro",
-      "label": "Introduction paragraph",
-      "info": "Optional lead sentence below the heading."
-    },
+      "type": "richtext",
+      "id": "layer1_body",
+      "label": "Layer 1 body (visible core)",
+      "info": "Main visible content above the accordion divider. If blank, falls back to page.content from Shopify admin."
+    }
+  ],
+  "blocks": [
     {
-      "type": "checkbox",
-      "id": "show_last_updated",
-      "label": "Show last updated date",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "last_updated_date",
-      "label": "Last updated date",
-      "info": "Shown only when 'Show last updated date' is checked."
+      "type": "accordion",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Accordion title"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Accordion body"
+        }
+      ]
     }
   ],
   "presets": [

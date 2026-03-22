@@ -5,12 +5,41 @@
       "settings": {
         "bg_color": "#F7F6F3",
         "heading_color": "#1A2224",
-        "eyebrow": "Legal",
-        "page_title": "Privacy Policy",
-        "page_intro": "This policy describes how HealthspanX collects, uses, and protects your personal data in connection with the Radiant Life™ measurement system.",
-        "show_last_updated": true,
-        "last_updated_date": ""
-      }
+        "eyebrow": "Governance",
+        "page_title": "Privacy & Data Stewardship",
+        "layer1_body": "<p>Radiant Life™ operates as a structured longitudinal documentation system.</p><p>We collect only the information required to operate the Assessment, the RL100 Tracking System, and related governance functions. Data is handled with restraint, purpose limitation, and respect for participant autonomy.</p><p>We do not sell personal data.</p><p>We do not monetize biological inputs.</p><p>We do not use assessment or tracking data for advertising optimization.</p><p>Information is collected to preserve measurement integrity, apply eligibility determination within structured protocol rules, and support longitudinal interpretability across defined documentation windows.</p><p>Research participation, where offered, is separate from core system participation and does not alter protocol access. Participation in anonymized research analysis is separately consented and never incentivized.</p>"
+      },
+      "blocks": {
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "What Data Is Collected",
+            "body": "<p>Basic identity and account information. Assessment responses. RL100 tracking inputs at defined measurement points. Structured photo anchors. System usage events required for integrity enforcement.</p><p>No continuous monitoring. No background surveillance. No passive biometric tracking.</p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "How Biological Data Is Used",
+            "body": "<p>Biological inputs are used exclusively to: Establish standardized baselines. Compare response across time. Apply eligibility logic. Preserve interpretive consistency.</p><p>They are never used to predict outcomes, rank participants, or create behavioral targeting profiles.</p>"
+          }
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Research Dataset Separation",
+            "body": "<p>Where research consent is provided: Identifiable data (Tier A) is separated from de-identified dataset (Tier B). De-identification occurs prior to analysis. Aggregate reporting occurs at cohort level only.</p><p>Research participation is voluntary and does not alter system access.</p>"
+          }
+        },
+        "accordion-4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Data Retention & Continuity",
+            "body": "<p>Longitudinal documentation requires continuity. Certain data is retained to preserve interpretability across each 100-day window. Deletion requests are honored where legally required and operationally feasible, with the understanding that removal may invalidate longitudinal comparison.</p>"
+          }
+        }
+      },
+      "block_order": ["accordion-1", "accordion-2", "accordion-3", "accordion-4"]
     }
   },
   "order": [

@@ -5,12 +5,34 @@
       "settings": {
         "bg_color": "#F7F6F3",
         "heading_color": "#1A2224",
-        "eyebrow": "Legal",
-        "page_title": "Terms of Use",
-        "page_intro": "By accessing or using HealthspanX and the Radiant Life™ system, you agree to these terms. Please read them carefully.",
-        "show_last_updated": true,
-        "last_updated_date": ""
-      }
+        "eyebrow": "Governance",
+        "page_title": "Terms of System Use",
+        "layer1_body": "<p>Radiant Life™ is a structured longitudinal documentation system.</p><p>By accessing or participating, you agree to use the system as designed — including sequencing, timing, dosage standardization, and eligibility rules — without attempting to bypass or manipulate its conditions.</p><p>The system prioritizes interpretability, fairness, and stability over convenience or speed.</p><p>Participation does not guarantee outcomes, access to specific products, continuation beyond defined system stages, or inclusion in research analysis.</p>"
+      },
+      "blocks": {
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "System Integrity & Participation",
+            "body": "<p>Participants agree not to: Initiate early protocol starts. Alter assigned intake mid-window. Misrepresent assessment information. Manipulate measurement inputs. Attempt to circumvent system eligibility controls.</p><p>Actions that compromise integrity may result in suspension.</p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Research Participation",
+            "body": "<p>Research inclusion: Is voluntary. Is separately consented. Does not alter protocol conditions. Does not provide financial benefit.</p>"
+          }
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Suspension & Termination",
+            "body": "<p>Radiant Life™ reserves the right to suspend participation where: System rules are violated. Data integrity is compromised. Fraudulent manipulation is suspected.</p>"
+          }
+        }
+      },
+      "block_order": ["accordion-1", "accordion-2", "accordion-3"]
     }
   },
   "order": [

@@ -5,12 +5,34 @@
       "settings": {
         "bg_color": "#F7F6F3",
         "heading_color": "#1A2224",
-        "eyebrow": "Legal",
-        "page_title": "Refund Policy",
-        "page_intro": "This policy outlines the conditions under which refunds may be issued for HealthspanX products and the Radiant Life™ program.",
-        "show_last_updated": true,
-        "last_updated_date": ""
-      }
+        "eyebrow": "Governance",
+        "page_title": "Refund & Fairness Covenant",
+        "layer1_body": "<p>Radiant Life™ operates on structured biological timelines.</p><p>Our refund policy exists to support fairness and institutional trust — not to accelerate enrollment decisions or reduce seriousness of participation.</p><p>A completed protocol with neutral or unremarkable documentation remains valid participation.</p><p>Refund decisions reflect fairness standards, not system failure.</p>"
+      },
+      "blocks": {
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "When Refunds Apply",
+            "body": "<p>Refunds are evaluated after full protocol completion, where standardized conditions were honored. Refund evaluation does not depend on research participation status. Refunds do not imply system malfunction or incorrect participation.</p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "What Refunds Do Not Imply",
+            "body": "<p>A refund does not imply: Product failure. Participant failure. Incorrect participation. It reflects respect for the participant's time and commitment.</p>"
+          }
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Abuse Protection",
+            "body": "<p>Repeated enrollment and refund cycling is restricted to protect system integrity.</p>"
+          }
+        }
+      },
+      "block_order": ["accordion-1", "accordion-2", "accordion-3"]
     }
   },
   "order": [

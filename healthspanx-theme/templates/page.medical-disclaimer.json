@@ -5,12 +5,27 @@
       "settings": {
         "bg_color": "#F7F6F3",
         "heading_color": "#1A2224",
-        "eyebrow": "Legal",
-        "page_title": "Medical Disclaimer",
-        "page_intro": "Radiant Life™ is a structured measurement and documentation system. It is not a medical service, does not diagnose conditions, and does not constitute medical advice.",
-        "show_last_updated": true,
-        "last_updated_date": ""
-      }
+        "eyebrow": "Governance",
+        "page_title": "Medical & Measurement Disclaimer",
+        "layer1_body": "<p>Radiant Life™ is not a medical service.</p><p>The Assessment and RL100 Documentation System do not diagnose, treat, cure, or prevent any disease. They document participant-provided and system-structured observational inputs under fixed exposure conditions over time.</p><p>All information provided is descriptive and educational in nature, intended to support structured self-understanding — not medical decision-making.</p><p>No individual outcome is predicted or implied.</p><p>Participants should consult qualified healthcare professionals for medical advice, diagnosis, or treatment.</p>"
+      },
+      "blocks": {
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Measurement vs Diagnosis",
+            "body": "<p>Measurement observes change. Diagnosis assigns meaning and treatment. Radiant Life™ operates strictly in the former. Radiant Life™ does not assign clinical meaning to documented changes.</p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why Outcomes Are Not Predicted",
+            "body": "<p>Biological response varies across individuals and contexts. Prediction introduces expectation bias and degrades interpretability. The system documents outcomes after completion — it does not forecast them.</p>"
+          }
+        }
+      },
+      "block_order": ["accordion-1", "accordion-2"]
     }
   },
   "order": [
