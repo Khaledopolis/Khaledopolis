@@ -23,7 +23,8 @@
     "home-biological-toolset": {
       "type": "home-biological-toolset",
       "settings": {},
-      "blocks": {}
+      "blocks": {},
+      "block_order": []
     },
     "home-deliberate": {
       "type": "home-deliberate",
