@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIRT6 Activator — Biohack Blueprint</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary:   '#041E18',
+            accent:    '#FDBE49',
+            lavender:  '#f9f1fd',
+            'lavender-mid': '#ede0fa',
+            'green-dark': '#041E18',
+            'green-mid':  '#0a3a2e',
+            'brown-dark': '#2a1a0e',
+            'trust-blue': '#e8f0fe',
+          },
+          boxShadow: {
+            'glow-green': '0 0 40px 12px rgba(4,30,24,0.13)',
+            'glow-lavender': '0 0 60px 20px rgba(180,130,230,0.22)',
+            'card': '0 8px 40px rgba(4,30,24,0.09)',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(32px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse_glow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(180,130,230,0.0), 0 0 50px 15px rgba(180,130,230,0.18)' },
+              '50%':       { boxShadow: '0 0 0 18px rgba(180,130,230,0.0), 0 0 70px 30px rgba(180,130,230,0.32)' },
+            },
+            shimmer: {
+              '0%':   { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition: '200% center' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%':       { transform: 'translateY(-8px)' },
+            },
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease both',
+            'fade-up-1':  'fadeUp 0.7s 0.1s ease both',
+            'fade-up-2':  'fadeUp 0.7s 0.2s ease both',
+            'fade-up-3':  'fadeUp 0.7s 0.35s ease both',
+            'fade-up-4':  'fadeUp 0.7s 0.5s ease both',
+            'fade-up-5':  'fadeUp 0.7s 0.65s ease both',
+            'pulse-glow': 'pulse_glow 3s ease-in-out infinite',
+            'float':      'float 5s ease-in-out infinite',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f1fd;
+      color: #041E18;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+
+    /* ---------- NAV glassmorphism ---------- */
+    .glass-nav {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      border-bottom: 1px solid rgba(255,255,255,0.55);
+    }
+
+    /* ---------- hero gradient background ---------- */
+    .hero-bg {
+      background: linear-gradient(145deg, #f9f1fd 0%, #ede0fa 30%, #f3ede8 60%, #ffffff 100%);
+    }
+
+    /* ---------- main image ring / glow ---------- */
+    .img-ring {
+      background: linear-gradient(135deg, #e8d5f8 0%, #d4f0e8 100%);
+      box-shadow:
+        0 0 0 6px rgba(180,130,230,0.18),
+        0 0 0 12px rgba(180,130,230,0.09),
+        0 32px 80px rgba(4,30,24,0.16);
+    }
+
+    /* ---------- thumbnail active ---------- */
+    .thumb.active {
+      outline: 2px solid #041E18;
+      outline-offset: 2px;
+    }
+
+    /* ---------- pill tags ---------- */
+    .benefit-pill {
+      background: rgba(4,30,24,0.07);
+      border: 1px solid rgba(4,30,24,0.13);
+      color: #041E18;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .benefit-pill:hover {
+      background: rgba(4,30,24,0.13);
+    }
+
+    /* ---------- pricing tabs ---------- */
+    .price-tab {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-align: center;
+      border: 1.5px solid rgba(4,30,24,0.14);
+      transition: all 0.22s ease;
+      background: transparent;
+      color: #041E18;
+      user-select: none;
+    }
+    .price-tab:hover {
+      border-color: rgba(4,30,24,0.4);
+      background: rgba(4,30,24,0.04);
+    }
+    .price-tab.active {
+      background: #041E18;
+      color: #f9f1fd;
+      border-color: #041E18;
+    }
+    .price-tab .tab-label { font-size: 0.72rem; opacity: 0.72; }
+    .price-tab.active .tab-label { opacity: 0.6; color: #d4f0e8; }
+    .price-tab .tab-price { font-weight: 800; font-size: 0.9rem; }
+
+    /* ---------- price display ---------- */
+    .price-card {
+      background: linear-gradient(135deg, #f5edfc 0%, #e8f4ef 100%);
+      border: 1px solid rgba(4,30,24,0.09);
+      border-radius: 16px;
+      padding: 20px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ---------- Best Value ribbon ---------- */
+    .best-value-ribbon {
+      position: absolute;
+      top: 14px;
+      right: -28px;
+      background: #FDBE49;
+      color: #041E18;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 36px;
+      transform: rotate(35deg);
+      transform-origin: center;
+    }
+
+    /* ---------- CTA button ---------- */
+    .cta-btn {
+      background: #041E18;
+      color: #f9f1fd;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+      padding: 18px 32px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 8px 30px rgba(4,30,24,0.28);
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(4,30,24,0.38);
+      background: #0a3a2e;
+    }
+    .cta-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 16px rgba(4,30,24,0.2);
+    }
+
+    /* ---------- trust bar ---------- */
+    .trust-bar {
+      background: #e8f0fe;
+      border: 1px solid rgba(66,133,244,0.18);
+      border-radius: 12px;
+    }
+
+    /* ---------- info cards reveal ---------- */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- nav link hover ---------- */
+    .nav-link {
+      position: relative;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #041E18;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 1.5px;
+      background: #041E18;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover { opacity: 1; }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ---------- subscribe btn nav ---------- */
+    .subscribe-btn-nav {
+      background: #041E18;
+      color: #f9f1fd;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(4,30,24,0.18);
+    }
+    .subscribe-btn-nav:hover {
+      background: #0a3a2e;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(4,30,24,0.26);
+    }
+
+    /* ---------- score badge ---------- */
+    .score-badge {
+      background: #041E18;
+      color: #FDBE49;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 6px 16px;
+      border-radius: 999px;
+    }
+
+    /* ---------- discount code badge ---------- */
+    .discount-badge {
+      background: linear-gradient(90deg, #FDBE49 0%, #f9d77e 100%);
+      color: #041E18;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 900;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+    }
+
+    /* ---------- misc ---------- */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    /* thumb gradients for placeholders 2-5 */
+    .thumb-placeholder {
+      background: linear-gradient(135deg, #e8d5f8 0%, #d4f0e8 100%);
+    }
+
+    /* floating badge on image */
+    .trust-float-badge {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(4,30,24,0.12);
+    }
+
+    /* savings badge */
+    .savings-badge {
+      background: linear-gradient(90deg, #d4f0e8 0%, #b9e6d3 100%);
+      color: #041E18;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-cols { flex-direction: column; }
+      .hero-left, .hero-right { width: 100% !important; }
+      .hero-left { max-width: 400px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       FIXED NAVIGATION
+  ============================================================ -->
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 shrink-0">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#041E18;">
+          <span class="material-symbols-outlined text-white" style="font-size:16px;">spa</span>
+        </div>
+        <span class="font-manrope font-800 text-primary text-base tracking-tight" style="font-weight:800; letter-spacing:-0.02em;">Biohack Blueprint</span>
+      </a>
+
+      <!-- Nav links (hidden on small) -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#" class="nav-link">Reviews</a>
+        <a href="#" class="nav-link">Science</a>
+        <a href="#" class="nav-link">Protocols</a>
+        <a href="#" class="nav-link">Longevity</a>
+      </div>
+
+      <!-- Subscribe CTA -->
+      <button class="subscribe-btn-nav shrink-0">Subscribe</button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section class="hero-bg min-h-screen pt-24 pb-16 px-6">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Optional eyebrow above columns -->
+      <div class="text-center mb-10 animate-fade-up">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase opacity-50" style="font-family:'Inter',sans-serif; letter-spacing:0.14em;">
+          <span class="material-symbols-outlined" style="font-size:14px;">science</span>
+          DoNotAge · SIRT6 Activator
+        </span>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="hero-cols flex gap-12 lg:gap-16 items-start">
+
+        <!-- =====================================================
+             LEFT COLUMN — Image Gallery
+        ===================================================== -->
+        <div class="hero-left w-full lg:w-5/12 animate-fade-up-1">
+
+          <!-- Main image circular container -->
+          <div class="relative mx-auto" style="max-width:420px;">
+
+            <!-- Glow ring -->
+            <div class="animate-pulse-glow absolute inset-0 rounded-full" style="z-index:0;"></div>
+
+            <!-- Circle image frame -->
+            <div class="img-ring animate-float relative rounded-full overflow-hidden mx-auto"
+                 style="width:100%; aspect-ratio:1/1; max-width:420px; z-index:1;">
+              <img
+                id="mainImg"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCvuWoNAc2B7qA_S1xw12WU68P-K1aAfY0IP7xGA3GyRBStSsbtf2megAOa8h7mlFY3ie5G7e6ibHuIBu6L3ETgx6vctMNDH6hXCFvbmZfsYfFtZQZOJ4Xr5tv-A86G_I-otwRMD_X22d9FPqiHTuJlLfoFsXOoamq7C9NcT2mX8FFMx6YDhRNofYQPZ2sGJg_HM9dUvQkmTpI6wswVpc2hGhbOr1Rjz_qZMECkPaNq6TMmRs_8h6yYiW72U3UQTZDKsTZaysFKpSX"
+                alt="DoNotAge SIRT6 Activator"
+                class="w-full h-full object-cover transition-transform duration-700"
+                style="transform:scale(1.03);"
+              />
+            </div>
+
+            <!-- Floating trust badge -->
+            <div class="trust-float-badge absolute bottom-6 left-0 flex items-center gap-2 px-4 py-2.5 rounded-full z-10">
+              <span class="material-symbols-outlined text-green-700" style="font-size:16px; font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">verified_user</span>
+              <span class="font-inter font-semibold text-xs text-primary" style="font-size:0.72rem; letter-spacing:0.02em; white-space:nowrap;">Third-Party Tested</span>
+            </div>
+
+          </div><!-- /main image wrapper -->
+
+          <!-- Thumbnail row -->
+          <div class="flex gap-3 mt-6 justify-center flex-wrap">
+
+            <!-- Thumb 1 — real image -->
+            <button class="thumb active rounded-xl overflow-hidden shrink-0 transition-all duration-200 hover:scale-105"
+                    style="width:72px; height:72px;"
+                    onclick="setThumb(this, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUUiHm2Q0P7zgU6JFeAdCg-oltWbUNW0k_nOZ3yqDP9-ic3D2zcIKAVlkUgs4frgT4q9yXa45Xnh7drkW2KuWkZYc6_HIg7KLwi_IuTtX4jVBEHFp7FJg_JfFlCkdmItzFcNk5AgU4bGd8yNVJbOsSTA998leds7Qv-R4J1kPWIQuFrLVCWeKbTfUKMj-cGWe6HDOEqDHkEkFCZp-s__XbeUZTV2IsI29jPZwABQA0fCkT2qYIj8SZST99aBAFheaHoTskTII6tgok')">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUUiHm2Q0P7zgU6JFeAdCg-oltWbUNW0k_nOZ3yqDP9-ic3D2zcIKAVlkUgs4frgT4q9yXa45Xnh7drkW2KuWkZYc6_HIg7KLwi_IuTtX4jVBEHFp7FJg_JfFlCkdmItzFcNk5AgU4bGd8yNVJbOsSTA998leds7Qv-R4J1kPWIQuFrLVCWeKbTfUKMj-cGWe6HDOEqDHkEkFCZp-s__XbeUZTV2IsI29jPZwABQA0fCkT2qYIj8SZST99aBAFheaHoTskTII6tgok"
+                   alt="Thumb 1" class="w-full h-full object-cover" />
+            </button>
+
+            <!-- Thumbs 2–5 — gradient placeholders with icon -->
+            <button class="thumb thumb-placeholder rounded-xl overflow-hidden shrink-0 flex items-center justify-center transition-all duration-200 hover:scale-105 hover:outline hover:outline-2 hover:outline-primary/30"
+                    style="width:72px; height:72px;"
+                    onclick="setThumb(this, null)">
+              <span class="material-symbols-outlined opacity-30" style="font-size:28px;">science</span>
+            </button>
+            <button class="thumb thumb-placeholder rounded-xl overflow-hidden shrink-0 flex items-center justify-center transition-all duration-200 hover:scale-105 hover:outline hover:outline-2 hover:outline-primary/30"
+                    style="width:72px; height:72px; background:linear-gradient(135deg,#d0eaf8,#e8d5f8);"
+                    onclick="setThumb(this, null)">
+              <span class="material-symbols-outlined opacity-30" style="font-size:28px;">biotech</span>
+            </button>
+            <button class="thumb thumb-placeholder rounded-xl overflow-hidden shrink-0 flex items-center justify-center transition-all duration-200 hover:scale-105 hover:outline hover:outline-2 hover:outline-primary/30"
+                    style="width:72px; height:72px; background:linear-gradient(135deg,#e8f4d0,#f8f0d0);"
+                    onclick="setThumb(this, null)">
+              <span class="material-symbols-outlined opacity-30" style="font-size:28px;">medication</span>
+            </button>
+            <button class="thumb thumb-placeholder rounded-xl overflow-hidden shrink-0 flex items-center justify-center transition-all duration-200 hover:scale-105 hover:outline hover:outline-2 hover:outline-primary/30"
+                    style="width:72px; height:72px; background:linear-gradient(135deg,#f8d0e8,#e8d5f8);"
+                    onclick="setThumb(this, null)">
+              <span class="material-symbols-outlined opacity-30" style="font-size:28px;">favorite</span>
+            </button>
+
+          </div><!-- /thumbs -->
+
+          <!-- Social proof strip -->
+          <div class="flex items-center justify-center gap-6 mt-8">
+            <div class="text-center">
+              <div class="font-manrope font-900 text-2xl text-primary" style="font-weight:900;">4.8★</div>
+              <div class="text-xs opacity-50 font-inter">2,400+ reviews</div>
+            </div>
+            <div class="w-px h-10 bg-primary opacity-10"></div>
+            <div class="text-center">
+              <div class="font-manrope font-900 text-2xl text-primary" style="font-weight:900;">48k+</div>
+              <div class="text-xs opacity-50 font-inter">Monthly users</div>
+            </div>
+            <div class="w-px h-10 bg-primary opacity-10"></div>
+            <div class="text-center">
+              <div class="font-manrope font-900 text-2xl text-primary" style="font-weight:900;">365</div>
+              <div class="text-xs opacity-50 font-inter">Day guarantee</div>
+            </div>
+          </div>
+
+        </div><!-- /left column -->
+
+        <!-- =====================================================
+             RIGHT COLUMN — Product Info
+        ===================================================== -->
+        <div class="hero-right w-full lg:w-7/12 flex flex-col gap-5">
+
+          <!-- Score badge row -->
+          <div class="flex items-center gap-3 animate-fade-up-1">
+            <span class="score-badge">9.4/10</span>
+            <span class="font-inter font-semibold text-sm opacity-60" style="letter-spacing:0.01em;">Exceptional Performance Score</span>
+          </div>
+
+          <!-- H1 -->
+          <h1 class="font-manrope font-900 leading-none text-primary animate-fade-up-2"
+              style="font-size:clamp(2rem,4vw,3.4rem); font-weight:900; letter-spacing:-0.03em; line-height:1.04;">
+            Activate the Longevity Gene<br/>
+            <span style="color:#0a3a2e;">Your Body Is Losing</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="font-inter text-base opacity-60 leading-relaxed max-w-lg animate-fade-up-2" style="font-size:0.97rem;">
+            DoNotAge's SIRT6 Activator harnesses fucoidan-based science to upregulate SIRT6 — the master longevity regulator linked to DNA repair, inflammation control, and cellular lifespan extension.
+          </p>
+
+          <!-- Benefit pills -->
+          <div class="flex flex-wrap gap-2 animate-fade-up-3">
+            <span class="benefit-pill">DNA Repair</span>
+            <span class="benefit-pill">Genomic Stability</span>
+            <span class="benefit-pill">SIRT6 Upregulation</span>
+            <span class="benefit-pill">Anti-Inflammaging</span>
+            <span class="benefit-pill">Autophagy Support</span>
+          </div>
+
+          <!-- ── PRICING TABS ── -->
+          <div class="animate-fade-up-3">
+            <div class="grid grid-cols-4 gap-2 mb-4" id="priceTabs">
+              <button class="price-tab active" data-idx="0" onclick="selectTab(0)">
+                <div class="tab-label">Buy 1</div>
+                <div class="tab-price">$55</div>
+              </button>
+              <button class="price-tab" data-idx="1" onclick="selectTab(1)">
+                <div class="tab-label">Buy 3</div>
+                <div class="tab-price">$145</div>
+              </button>
+              <button class="price-tab" data-idx="2" onclick="selectTab(2)">
+                <div class="tab-label">Buy 6</div>
+                <div class="tab-price">$270</div>
+              </button>
+              <button class="price-tab" data-idx="3" onclick="selectTab(3)">
+                <div class="tab-label">Subscribe</div>
+                <div class="tab-price">$520<span style="font-size:0.65rem;font-weight:600;">/yr</span></div>
+              </button>
+            </div>
+
+            <!-- Price display card -->
+            <div class="price-card" id="priceCard">
+              <!-- Best Value ribbon (hidden by default) -->
+              <div id="bestValueRibbon" class="best-value-ribbon hidden">Best Value</div>
+
+              <div class="flex items-end gap-3 mb-2">
+                <span class="font-manrope font-900 text-primary" id="priceMain" style="font-size:2.8rem; font-weight:900; line-height:1; letter-spacing:-0.03em;">$55</span>
+                <span class="font-inter text-sm opacity-50 mb-1" id="priceLabel">/bottle</span>
+                <span class="savings-badge ml-auto" id="savingsBadge">Save $0</span>
+              </div>
+              <p class="font-inter text-xs opacity-50" id="priceSubtext">One-time purchase · 30-day supply</p>
+            </div>
+          </div>
+
+          <!-- Trust bar -->
+          <div class="trust-bar flex items-center gap-3 p-4 animate-fade-up-4">
+            <span class="material-symbols-outlined text-blue-600 shrink-0" style="font-size:24px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">shield</span>
+            <div>
+              <span class="font-inter font-700 text-sm text-primary" style="font-weight:700;">365-Day Money Back Guarantee</span>
+              <span class="font-inter text-sm opacity-60"> + Free Shipping on All Orders</span>
+            </div>
+          </div>
+
+          <!-- CTA button -->
+          <div class="animate-fade-up-4">
+            <button class="cta-btn">
+              Get SIRT6 Activator
+              <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- Discount code + certifications row -->
+          <div class="flex items-center gap-4 flex-wrap animate-fade-up-5">
+            <span class="discount-badge">BB10</span>
+            <span class="font-inter text-xs opacity-50">Use code <strong class="opacity-80">BB10</strong> for 10% off</span>
+            <span class="ml-auto font-inter text-xs opacity-45 hidden sm:block">GMP Certified · USA Formulated · 100% Vegan</span>
+          </div>
+
+          <!-- Info cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+
+            <!-- Dark green card -->
+            <div class="reveal-card rounded-2xl p-5 flex flex-col gap-3"
+                 style="background:linear-gradient(135deg,#041E18 0%,#0a3a2e 100%); color:#e8f4ef;">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined" style="font-size:18px; color:#FDBE49; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">auto_awesome</span>
+                <span class="font-manrope font-800 text-sm" style="font-weight:800; color:#f5fdf9;">What Makes This Exceptional</span>
+              </div>
+              <p class="font-inter text-xs leading-relaxed" style="opacity:0.72; font-size:0.78rem;">
+                Fucoidan, a sulfated polysaccharide from brown seaweed, has been shown in peer-reviewed research to significantly upregulate SIRT6 expression — a histone deacetylase that governs DNA repair, telomere maintenance, and metabolic homeostasis. Most supplements don't target this pathway directly. This one does.
+              </p>
+              <a href="#" class="font-inter font-semibold text-xs flex items-center gap-1 mt-auto" style="color:#FDBE49;">
+                View Research
+                <span class="material-symbols-outlined" style="font-size:14px;">open_in_new</span>
+              </a>
+            </div>
+
+            <!-- Dark brown card -->
+            <div class="reveal-card rounded-2xl p-5 flex flex-col gap-3"
+                 style="background:linear-gradient(135deg,#2a1a0e 0%,#3d2614 100%); color:#f8ede0;">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined" style="font-size:18px; color:#FDBE49; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">info</span>
+                <span class="font-manrope font-800 text-sm" style="font-weight:800; color:#fdf5ed;">Honest Limitations</span>
+              </div>
+              <p class="font-inter text-xs leading-relaxed" style="opacity:0.72; font-size:0.78rem;">
+                SIRT6 activation is a long-game strategy. Cellular-level changes to DNA repair fidelity and telomere length require sustained supplementation — most users report noticeable shifts in energy and recovery only after 4+ months of consistent use. This is not a quick-fix product.
+              </p>
+              <a href="#" class="font-inter font-semibold text-xs flex items-center gap-1 mt-auto" style="color:#FDBE49;">
+                Read Full Review
+                <span class="material-symbols-outlined" style="font-size:14px;">chevron_right</span>
+              </a>
+            </div>
+
+          </div><!-- /info cards -->
+
+          <!-- Mobile certifications -->
+          <p class="sm:hidden font-inter text-xs opacity-40 text-center animate-fade-up-5">GMP Certified · USA Formulated · 100% Vegan</p>
+
+        </div><!-- /right column -->
+      </div><!-- /hero-cols -->
+    </div><!-- /max-w -->
+  </section>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ── Pricing data ── */
+    const PLANS = [
+      { label: 'Buy 1',     price: '$55',  unit: '/bottle',    savings: null,     subtext: 'One-time purchase · 30-day supply',   ribbon: false },
+      { label: 'Buy 3',     price: '$145', unit: '/3 bottles', savings: 'Save $20',  subtext: 'One-time purchase · 90-day supply',   ribbon: false },
+      { label: 'Buy 6',     price: '$270', unit: '/6 bottles', savings: 'Save $60',  subtext: 'One-time purchase · 180-day supply',  ribbon: false },
+      { label: 'Subscribe', price: '$520', unit: '/year',      savings: 'Save $140', subtext: 'Auto-renews annually · Cancel anytime', ribbon: true  },
+    ];
+
+    function selectTab(idx) {
+      const plan = PLANS[idx];
+
+      /* Update tab styles */
+      document.querySelectorAll('.price-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
+
+      /* Update price card */
+      document.getElementById('priceMain').textContent  = plan.price;
+      document.getElementById('priceLabel').textContent = plan.unit;
+      document.getElementById('priceSubtext').textContent = plan.subtext;
+
+      const savBadge = document.getElementById('savingsBadge');
+      if (plan.savings) {
+        savBadge.textContent = plan.savings;
+        savBadge.style.display = 'inline-flex';
+      } else {
+        savBadge.textContent = 'Save $0';
+        savBadge.style.display = 'inline-flex';
+      }
+
+      /* Best Value ribbon */
+      const ribbon = document.getElementById('bestValueRibbon');
+      if (plan.ribbon) {
+        ribbon.classList.remove('hidden');
+      } else {
+        ribbon.classList.add('hidden');
+      }
+    }
+
+    /* ── Thumbnail switching ── */
+    function setThumb(btn, imgSrc) {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (imgSrc) {
+        const mainImg = document.getElementById('mainImg');
+        mainImg.style.opacity = '0';
+        mainImg.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+          mainImg.src = imgSrc;
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    /* ── Scroll reveal for info cards ── */
+    const revealCards = document.querySelectorAll('.reveal-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealCards.forEach((card, i) => {
+      card.dataset.delay = i * 120;
+      observer.observe(card);
+    });
+
+    /* ── Trigger reveal immediately if in viewport on load ── */
+    window.addEventListener('load', () => {
+      revealCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          setTimeout(() => card.classList.add('revealed'), parseInt(card.dataset.delay || 0) + 400);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
